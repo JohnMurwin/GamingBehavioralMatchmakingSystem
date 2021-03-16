@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "968052660642",
+    "project_id": "gaming-behav-matchmaking-sys",
+    "storage_bucket": "gaming-behav-matchmaking-sys.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968052660642:android:062079391758ba68127afb",
+        "android_client_info": {
+          "package_name": "swe6733.team2.gbms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968052660642-odfeehj62h7p0vo31ql8avj9qn3ikrls.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaq0xorsBYgyAgLhHvqff02-VsL0spEl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968052660642-odfeehj62h7p0vo31ql8avj9qn3ikrls.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
