@@ -119,7 +119,7 @@ To get a local copy up and running follow these simple steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/JohnMurwin/SWE6733T2-GamingBehavioralMatchmakingSystem.git
+   git clone https://github.com/SWE-Spring2020-Team2/GamingBehavioralMatchmakingSystem.git
    ```
 2. Initialize GitFlow using:
    ```sh
@@ -145,7 +145,7 @@ _For examples, please refer to the Android Developer Design Reference: [Android 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [Trello Board](https://trello.com/b/Ciy6lBaC/agile-sprint-board) for a list of milestones, features, and assigned issues. Additionaly, known issues will be tracked via the Github Issues system which you can access [here](https://github.com/SWE-Spring2020-Team2/SWE6733T2-GamingBehavioralMatchmakingSystem/issues). 
+See the [Trello Board](https://trello.com/b/Ciy6lBaC/agile-sprint-board) for a list of milestones, features, and assigned issues. Additionaly, known issues will be tracked via the Github Issues system which you can access [here](https://github.com/SWE-Spring2020-Team2/GamingBehavioralMatchmakingSystem/issues). 
 
 
 
@@ -182,7 +182,7 @@ Thade Huichapa: Developer - [@]() - thaidehuichapa@gmail.com
 L. Renee: Scrum Master - [@]() - ldavisto@students.kennesaw.edu
 
 
-Project Link: [https://github.com/JohnMurwin/SWE6733T2-GamingBehavioralMatchmakingSystem](https://github.com/SWE-Spring2020-Team2/SWE6733T2-GamingBehavioralMatchmakingSystem)
+Project Link: [https://github.com/JohnMurwin/SWE6733T2-GamingBehavioralMatchmakingSystem](https://github.com/SWE-Spring2020-Team2/GamingBehavioralMatchmakingSystem)
 
 
 
