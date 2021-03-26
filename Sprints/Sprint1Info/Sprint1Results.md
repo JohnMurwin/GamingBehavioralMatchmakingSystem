@@ -13,7 +13,8 @@ https://docs.google.com/document/d/1FUdENHy-KZ_gGeMFI8PQRvV-3Bd1DbDnW34GJ9jFz_A/
 ![Our Mob Proof Image](Sprint1MobProgramming.png)
 
 **App UI Prototype**
-![App UI Prototype](AppUIDemo.mp4)
+![App UI Prototype](https://youtu.be/2rPzzUZeX5M)
+https://youtu.be/2rPzzUZeX5M
 _Also Included in the same folder._
 
 
