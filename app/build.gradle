@@ -38,6 +38,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation platform('com.google.firebase:firebase-bom:26.7.0')
-    implementation 'com.google.firebase:firebase-analytics'
+
+    implementation platform('com.google.firebase:firebase-bom:26.7.0')  // BoM for the Firebase platform
+
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-analytics' // dependency for the Cloud Analytics library
+    implementation 'com.google.firebase:firebase-firestore' // dependency for the Cloud Firestore library
+    implementation 'com.google.firebase:firebase-auth'  // dependency for the general Firebase Auth library
 }
