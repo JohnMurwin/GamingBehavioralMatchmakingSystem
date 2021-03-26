@@ -101,7 +101,10 @@ Friend Sorting
 Group Forming
 Player Identity
 
-
+### Sprint 1 Result Folder:
+```
+GBMS-Repo/Sprints/Sprint1Infos
+```
 
 
 <!-- GETTING STARTED -->
