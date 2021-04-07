@@ -9,6 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GamingBehavioralMatchmakingSystem">
+        <activity android:name=".SetUp"></activity>
+        <activity android:name=".ResetPassword" />
+        <activity android:name=".Register" />
+        <activity android:name=".LogOut" />
+        <activity android:name=".GenreSetup" />
+        <activity android:name=".FriendList" />
+        <activity android:name=".ForgotPassword" />
+        <activity android:name=".EmailVerified" />
+        <activity android:name=".EmailVerification" />
+        <activity android:name=".ChangePassword" />
+        <activity android:name=".email_verification" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
