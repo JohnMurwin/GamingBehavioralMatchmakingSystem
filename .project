@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Gaming Behavioral Matchmaking System</name>
-	<comment>Project GBMS-Repo created by Buildship.</comment>
+	<name>GamingBehavioralMatchmakingSystem</name>
+	<comment>Project GamingBehavioralMatchmakingSystem created by Buildship.</comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -16,7 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1616031344248</id>
+			<id>1615860406147</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
