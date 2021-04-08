@@ -15,7 +15,7 @@ https://drive.google.com/file/d/1ZIJdIJYdzdl07sdft8qe4dgZk0pp1S5B/view?usp=shari
 **Evidence of Testing**
 - Our product is not ready for unit testing. However, we have developed requirements for the Blackbox Testing and have started those tests: https://docs.google.com/document/d/1Vi977bYi36Fzai0G14BtITEfOHBQ2S5CbnrS6Ihm35o/edit?usp=sharing 
 
-**Sprint Review**   
+**Daily Scrums / Sprint Review**   
 https://docs.google.com/document/d/1spclqSNwGjNEzWuWTEpSqd_vJAx6Hx23aWmSePEMb1I/edit?usp=sharing
 
 **CI/CD Systems**
