@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GamingBehavioralMatchmakingSystem">
+        android:theme="@style/Theme.Design.NoActionBar">
         <activity android:name=".SetUp"></activity>
         <activity android:name=".ResetPassword" />
         <activity android:name=".Register" />
@@ -19,7 +19,6 @@
         <activity android:name=".EmailVerified" />
         <activity android:name=".EmailVerification" />
         <activity android:name=".ChangePassword" />
-        <activity android:name=".email_verification" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
