@@ -25,7 +25,7 @@ public class EmailVerification extends AppCompatActivity implements View.OnClick
             case R.id.ok:
                 startActivity(new Intent(this, EmailVerification.class));
                 break;
-            case R.id.login:
+            case R.id.PB_SI_Login:
                 startActivity(new Intent(this, LogOut.class));
                 break;
         }

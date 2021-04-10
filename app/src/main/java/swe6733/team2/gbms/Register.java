@@ -24,11 +24,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         lastname=(EditText) findViewById(R.id.lastname);
         birthdate=(EditText) findViewById(R.id.birthdate);
         email=(EditText) findViewById(R.id.email);
-        username=(EditText) findViewById(R.id.username);
-        password=(EditText) findViewById(R.id.password);
+        username=(EditText) findViewById(R.id.ET_SI_Username);
+        password=(EditText) findViewById(R.id.ET_SI_Password);
         passwordconfirmation=(EditText) findViewById(R.id.passwordconfirmation);
 
-        login=(TextView) findViewById(R.id.login);
+        login=(TextView) findViewById(R.id.PB_SI_Login);
         login.setOnClickListener(this);
         createNewAccount= (Button) findViewById(R.id.createNewAccount);
         createNewAccount.setOnClickListener(this);
@@ -41,7 +41,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             case R.id.createNewAccount:
                 startActivity(new Intent(this,EmailVerification.class));
                 break;
-            case R.id.login:
+            case R.id.PB_SI_Login:
                 startActivity(new Intent(this,LogOut.class));
                 break;
         }
