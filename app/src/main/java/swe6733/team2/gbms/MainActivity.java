@@ -8,8 +8,10 @@
 
 package swe6733.team2.gbms;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,17 +19,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.google.android.gms.common.util.Strings;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
-    //Private Variables
-    private int loginMode;  //0 = Sign In, 1 = Sign Up, 3 = Recovery
-    private FirebaseAuth firebaseAuth;  //Instance to the FirebaseAuth System
-
-
+    //Component Variables
     Button login;
     EditText username;
     EditText password;
@@ -38,65 +42,53 @@ public class MainActivity extends AppCompatActivity{
     LinearLayout signUpLayout;
     LinearLayout forgotPasswordLayout;
 
+    //Private Variables
+    private static final String TAG = "GBMS: MainActivity -";
+
+    private int loginMode;  //0 = Sign In, 1 = Sign Up, 3 = Recovery
+    private FirebaseAuth firebaseAuth;  //Instance to the FirebaseAuth System
+
+    private FirebaseUser currentUser;
+
+
+    //OnCreate Override
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Component Linking
         username = (EditText) findViewById(R.id.ET_SI_Username);
         password = (EditText) findViewById(R.id.ET_SI_Password);
         login = (Button) findViewById(R.id.PB_SI_Login);
         new_account = (TextView) findViewById(R.id.PT_SI_CreateNewAccount);
         forgotPassword = (TextView) findViewById(R.id.PT_SI_ForgotPassword);
 
-        //Layouts
+        //Layout Linking
         signInLayout = (LinearLayout) findViewById(R.id.LL_SignIn);
         signUpLayout = (LinearLayout) findViewById(R.id.LL_SignUp);
         forgotPasswordLayout = (LinearLayout) findViewById(R.id.LL_ForgotPassword);
 
-        //login.setOnClickListener(this);
-        //new_account.setOnClickListener(this);
-        //forgotPassword.setOnClickListener(this);
 
-        //FirebaseAuth Configuration
+        //Firebase Auth Instancing
         firebaseAuth = FirebaseAuth.getInstance();
 
-        //if (firebaseAuth.getAccessToken(true))
-        Log.e("FirebaseAuth Token Status:", String.valueOf(firebaseAuth.getAccessToken(true)));
+    }
 
-
-        //Firebase Test - DEPRECIATED FOR NOW
-        /*
-        firebaseAuth.createUserWithEmailAndPassword("test@test.com", "123456")
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("CreateAuthSuccess", "createUserWithEmail:success");
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            //updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("CreateAuthFailure", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
-                        }
-                    }
-                });
-         */
-
-        //Firestore DB Configuration
-        //FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        //Quick Printout of Firebase Instance ID
-        //Log.e("FirebaseInstanceID:", db.toString());
+    //OnStart Override
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly
+        currentUser = firebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            //TODO: Auto-change to HomePage activity so user doesn't have to sign in again
+        }
     }
 
 
     //Sign In Click
-    public void SignInClick (View vIew) //This swaps the ViewPort from anything, to the Sign In Screen
+    public void SignInClick(View vIew) //This swaps the ViewPort from anything, to the Sign In Screen
     {
         //Ensure Everything Else is Invisible
         signUpLayout.setVisibility(View.INVISIBLE);
@@ -110,7 +102,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     //Sign Up Click
-    public void SignUpClick (View vIew) //This swaps the ViewPort from anything, to the Sign Up Screen
+    public void SignUpClick(View vIew) //This swaps the ViewPort from anything, to the Sign Up Screen
     {
         //Ensure Everything Else is Invisible
         signInLayout.setVisibility(View.INVISIBLE);
@@ -124,7 +116,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     //Forgot Password Click
-    public void ForgotPasswordClick (View vIew) //This swaps the ViewPort from anything, to the Forgot Password Screen
+    public void ForgotPasswordClick(View vIew) //This swaps the ViewPort from anything, to the Forgot Password Screen
     {
         //Ensure Everything Else is Invisible
         signInLayout.setVisibility(View.INVISIBLE);
@@ -137,5 +129,55 @@ public class MainActivity extends AppCompatActivity{
         loginMode = 2;
     }
 
+    //Login Initiate
+    public void Login(View view)   //This actually does the Login process through Firebase Auth (depending on Login Type will auto-complete proper sign in process)
+    {
+        //Login Setup
+        final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
+        String email = username.getText().toString().toLowerCase();
+        String pass = password.getText().toString().toLowerCase();
+
+        //final String displayName;
+
+
+        //check if we are in loginMode
+        if (loginMode == 0) {
+            //NORMAL AUTHENTICATION WITH EMAIL AND PASSWORD
+
+            //First Check if Username or Password is Empty and Alert User
+            if (Strings.isEmptyOrWhitespace(email)) {
+                Toast.makeText(getApplicationContext(), "Email Cannot Be Empty", Toast.LENGTH_LONG).show();
+            } else if (Strings.isEmptyOrWhitespace(pass)) {
+                Toast.makeText(getApplicationContext(), "Password Cannot Be Empty", Toast.LENGTH_LONG).show();
+            }
+            //If User did put in a acceptable Username / Password, try Login
+            else {
+                try {
+                    firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                //Print Log
+                                Log.d(TAG, "signInWithEmail:success");
+
+                                //Store User
+                                currentUser = firebaseAuth.getCurrentUser();
+
+                                //Change Activities
+                                //startActivity(intent);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } catch (Exception ex) { //Catch Authentication Failed Exception
+
+                    Toast.makeText(getApplicationContext(), "Authentication failed. " + ex.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+    }
 }
