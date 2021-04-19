@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MatchMaking">
+
+    <!-- PARENT LAYOUT COMPONENT FOR ALL ITEMS -->
+    <ImageView
+        android:id="@+id/IV_GBMLogo"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gbm__4__3" />
+
+    <!-- Friend List LAYOUT COMPONENT -->
+    <LinearLayout
+        android:id="@+id/LL_Friendlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Friend List"
+            android:textAlignment="center" />
+
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <Button
+                android:id="@+id/FL_friends"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Friends"
+                android:backgroundTint="@color/purple_500"/>
+
+            <Button
+                android:id="@+id/FL_recommendations"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Recommendations" />
+
+        </androidx.gridlayout.widget.GridLayout>
+
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search by Name"
+            />
+    </LinearLayout>
+
+    <!-- Recommendations LAYOUT COMPONENT -->
+    <LinearLayout
+        android:id="@+id/LL_Recommendations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recommendations"
+            android:textAlignment="center" />
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <Button
+                android:id="@+id/R_friends"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Friends"
+                />
+
+            <Button
+                android:id="@+id/R_recommendations"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Recommendations"
+                android:backgroundTint="@color/purple_500"/>
+
+        </androidx.gridlayout.widget.GridLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+</FrameLayout>

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     Button login;
     EditText username;
     EditText password;
-    TextView new_account;
+    TextView signup;
     TextView forgotPassword;
 
     //Sign Up
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.ET_SI_Username);
         password = (EditText) findViewById(R.id.ET_SI_Password);
         login = (Button) findViewById(R.id.PB_SI_Login);
-        new_account = (TextView) findViewById(R.id.PT_SI_CreateNewAccount);
+        signup = (TextView) findViewById(R.id.PT_SI_CreateNewAccount);
         forgotPassword = (TextView) findViewById(R.id.PT_SI_ForgotPassword);
 
         //Sign Up Component Linking
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     public void Login(View view)   //This actually does the Login process through Firebase Auth (depending on Login Type will auto-complete proper sign in process)
     {
         //Login Setup
-        final Intent homeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
+        final Intent intent = new Intent(getApplicationContext(), Settings.class);
 
         String email = username.getText().toString().toLowerCase();
         String pass = password.getText().toString().toLowerCase();

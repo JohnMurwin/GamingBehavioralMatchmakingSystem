@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/MatchMaking_Page"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_match_making_24"
+        android:title="@string/matchmaking" />
+    <item
+        android:id="@+id/Home_Page"
+        android:enabled="true"
+        android:icon="@drawable/ic_outline_home_24"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/Settings_Page"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="@string/settings"/>
+</menu>
