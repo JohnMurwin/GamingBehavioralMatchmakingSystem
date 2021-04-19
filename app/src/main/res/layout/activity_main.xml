@@ -28,41 +28,66 @@
         tools:visibility="visible">
 
         <TextView
-            android:id="@+id/TV_ResetTitleText"
+            android:id="@+id/TV_RP_ResetTitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Reset Password"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/TV_ResetText"
+            android:id="@+id/TV_RP_ResetText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Instructions to reset your password have been sent.  Please check your email to reset your password."
+            android:text='Input your email and press "Reset" to send password reset link!'
             android:textAlignment="center"
             android:textSize="25dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <EditText
+            android:id="@+id/ET_RP_Username"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:hint="@string/prompt_email"
+            android:inputType="textPersonName"
+            android:selectAllOnFocus="true"
+            android:textAlignment="center" />
+
         <Button
-            android:id="@+id/PB_LoginReturn"
+            android:id="@+id/PB_PR_LoginReturn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
             android:background="@drawable/shape"
-            android:onClick="SignInClick"
-            android:text="Back to Login"
-            android:textColor="@color/white"
             android:backgroundTint="#2196F3"
-             />
+            android:onClick="ForgotPassword"
+            android:text="Reset"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/TV_RP_SendAgainText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:onClick="ForgotPassword"
+            android:text="Send Again"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
     <!-- SIGN UP LAYOUT COMPONENT -->
@@ -73,85 +98,87 @@
         android:layout_marginTop="150dp"
         android:orientation="vertical"
         android:visibility="invisible"
-        tools:visibility="visible">
+        tools:visibility="invisible">
 
         <EditText
             android:id="@+id/ET_SU_FirstNameInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/shape"
-            android:text="First Name"
             android:inputType="textPersonName"
-            android:textAlignment="center"
-            android:layout_gravity="center"/>
+            android:text="First Name"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/ET_SU_LastNameInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:background="@drawable/shape"
-            android:text="Last Name"
             android:inputType="textPersonName"
-            android:textAlignment="center"
-            android:layout_gravity="center"/>
+            android:text="Last Name"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/ET_SU_DOBInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:background="@drawable/shape"
-            android:text="Birth Date"
             android:inputType="textPersonName"
-            android:textAlignment="center"
-            android:layout_gravity="center"/>
+            android:text="Birth Date"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/ET_SU_EmailAddressInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:background="@drawable/shape"
-            android:text="Email Address"
             android:inputType="textPersonName"
-            android:textAlignment="center"
-            android:layout_gravity="center"/>
+            android:text="Email Address"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/ET_SU_UsernameInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:background="@drawable/shape"
-            android:text="User Name"
             android:inputType="textPersonName"
-            android:textAlignment="center"
-            android:layout_gravity="center"/>
+            android:text="User Name"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/ET_SU_PasswordInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:background="@drawable/shape"
-            android:text="Password"
             android:inputType="textPersonName"
-            android:textAlignment="center"
-            android:layout_gravity="center"/>
+            android:text="Password"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/PB_SU_CreateNewAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:background="@drawable/shape"
-            android:text="Create New Account"
             android:backgroundTint="#2196F3"
             android:inputType="textPersonName"
+            android:onClick="Signup"
+            android:text="New Account"
             android:textAlignment="center"
-            android:layout_gravity="center"/>
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/PT_SI_CreateNewAccount2"
@@ -187,7 +214,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="350dp"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="visible"
+        tools:visibility="invisible">
 
         <EditText
             android:id="@+id/ET_SI_Username"
@@ -218,9 +246,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/shape"
+            android:backgroundTint="#2196F3"
             android:onClick="Login"
             android:text="@string/action_log_in"
-            android:backgroundTint="#2196F3"
             android:textColor="@color/white"
             android:textSize="30sp" />
 

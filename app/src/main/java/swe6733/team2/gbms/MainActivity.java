@@ -30,12 +30,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
     EditText su_passwordInput;
     Button su_createNewAccountPB;
 
+    //Reset Password
+    TextView rp_instructionText;
+    EditText rp_resetEmail;
+    Button rp_resetPB;
 
     LinearLayout signInLayout;
     LinearLayout signUpLayout;
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "GBMS: MainActivity -";
 
     private int loginMode;  //0 = Sign In, 1 = Sign Up, 3 = Recovery
+    private int resetMode; //0 = Reset, 1 = Return
 
     //Firebase Variables
     private FirebaseAuth firebaseAuth;  //Instance to the FirebaseAuth System
@@ -95,6 +96,11 @@ public class MainActivity extends AppCompatActivity {
         su_usernameInput = (EditText) findViewById(R.id.ET_SU_UsernameInput);
         su_passwordInput = (EditText) findViewById(R.id.ET_SU_PasswordInput);
         su_createNewAccountPB = (Button) findViewById(R.id.PB_SU_CreateNewAccount);
+
+        //Reset Password Component Linking
+        rp_instructionText = (TextView) findViewById(R.id.TV_RP_ResetText);
+        rp_resetEmail = (EditText) findViewById(R.id.ET_RP_Username);
+        rp_resetPB = (Button) findViewById(R.id.PB_PR_LoginReturn);
 
         //Layout Linking
         signInLayout = (LinearLayout) findViewById(R.id.LL_SignIn);
@@ -125,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //Sign In Click
-    public void SignInClick(View vIew) //This swaps the ViewPort from anything, to the Sign In Screen
+    public void SignInClick(View view) //This swaps the ViewPort from anything, to the Sign In Screen
     {
         //Ensure Everything Else is Invisible
         signUpLayout.setVisibility(View.INVISIBLE);
@@ -139,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Sign Up Click
-    public void SignUpClick(View vIew) //This swaps the ViewPort from anything, to the Sign Up Screen
+    public void SignUpClick(View view) //This swaps the ViewPort from anything, to the Sign Up Screen
     {
         //Ensure Everything Else is Invisible
         signInLayout.setVisibility(View.INVISIBLE);
@@ -153,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Forgot Password Click
-    public void ForgotPasswordClick(View vIew) //This swaps the ViewPort from anything, to the Forgot Password Screen
+    public void ForgotPasswordClick(View view) //This swaps the ViewPort from anything, to the Forgot Password Screen
     {
         //Ensure Everything Else is Invisible
         signInLayout.setVisibility(View.INVISIBLE);
@@ -161,6 +167,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Set ForgotPassword Items to Visible
         forgotPasswordLayout.setVisibility(View.VISIBLE);
+
+        //Ensure Proper Text is Set
+        rp_instructionText.setText("Input your email and press \"Reset\" to send password reset link!");
+        rp_resetPB.setText ("Reset");
 
         //Set loginMode
         loginMode = 2;
@@ -201,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
                                 currentUser = firebaseAuth.getCurrentUser();
 
                                 //CHANGE ACTIVITIES HERE
-                                startActivity(homeActivityIntent);
+                                startActivity(intent);
 
                             } else {
                                 Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
@@ -217,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Signup Initiate
-    public void Signup (View view)
+    public void Signup (View view)  //This actually does the Sign Up process through Firebase Auth (right now only works with Email and Password)
     {
         //Signup Setup
         final Intent homeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
@@ -299,6 +309,43 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "User Account Creation failed. " + ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
+        }
+    }
+
+    //Forgot Password Initiate
+    public void ForgotPassword (View view)  //This actually sends the Reset Password command
+    {
+        //Check Reset Mode or Return Mode
+        if (resetMode == 0)
+        {
+            //First set text to feedback:
+            rp_instructionText.setText("A Password Reset link has been sent to your email! If you didnt recieve it, wait and then press \"Send Again\"");
+            rp_resetPB.setText("Return to Login");
+
+            //Initiate Password Reset
+            try {
+                firebaseAuth.sendPasswordResetEmail(rp_resetEmail.toString())
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "Email sent.");
+                                }
+                            }
+                        });
+
+            }catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "Sending Reset Email failed. " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            resetMode = 1;
+        }
+        else
+        {
+            //Call the Sign In Screen
+            SignInClick(getCurrentFocus());
+
+            resetMode = 0;
         }
     }
 }
