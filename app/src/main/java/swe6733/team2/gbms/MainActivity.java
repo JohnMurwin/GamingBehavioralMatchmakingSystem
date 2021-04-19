@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
     public void Signup (View view)
     {
         //Signup Setup
-        final Intent intent = new Intent(getApplicationContext(), Home.class);
+        final Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
 
         String email = su_emailInput.getText().toString().toLowerCase();
         String pass = su_passwordInput.getText().toString().toLowerCase();
