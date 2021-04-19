@@ -15,9 +15,6 @@
         android:layout_marginLeft="100dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/gbm__4__3" />
 
     <!-- FORGOT PASSWORD LAYOUT COMPONENT -->
@@ -45,7 +42,7 @@
             android:id="@+id/TV_ResetText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="250dp"
+            android:layout_marginTop="20dp"
             android:text="Instructions to reset your password have been sent.  Please check your email to reset your password."
             android:textAlignment="center"
             android:textSize="25dp"
@@ -55,17 +52,16 @@
 
         <Button
             android:id="@+id/PB_LoginReturn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
             android:background="@drawable/shape"
             android:onClick="SignInClick"
             android:text="Back to Login"
             android:textColor="@color/white"
-            app:backgroundTint="#2196F3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:backgroundTint="#2196F3"
+             />
     </LinearLayout>
 
     <!-- SIGN UP LAYOUT COMPONENT -->
@@ -79,114 +75,90 @@
         tools:visibility="visible">
 
         <EditText
-            android:id="@+id/ET_SU_EmailAddressInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/shape"
-            android:hint="@string/prompt_email"
-            android:inputType="textEmailAddress"
-            android:selectAllOnFocus="true"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
             android:id="@+id/ET_SU_FirstNameInput"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/shape"
-            android:hint="@string/prompt_firstName"
+            android:text="First Name"
             android:inputType="textPersonName"
-            android:selectAllOnFocus="true"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/ET_SU_LastNameInput"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/shape"
-            android:hint="@string/prompt_lastName"
+            android:text="Last Name"
             android:inputType="textPersonName"
-            android:selectAllOnFocus="true"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/ET_SU_DOBInput"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/shape"
-            android:hint="@string/prompt_birthDate"
-            android:inputType="date"
-            android:selectAllOnFocus="true"
+            android:text="Birth Date"
+            android:inputType="textPersonName"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/ET_SU_EmailAddressInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shape"
+            android:text="Email Address"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/ET_SU_UsernameInput"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/shape"
-            android:hint="@string/prompt_UserName"
+            android:text="User Name"
             android:inputType="textPersonName"
-            android:selectAllOnFocus="true"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center"/>
 
         <EditText
             android:id="@+id/ET_SU_PasswordInput"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/shape"
-            android:hint="@string/prompt_password"
-            android:imeActionLabel="@string/action_sign_in_short"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:selectAllOnFocus="true"
+            android:text="Password"
+            android:inputType="textPersonName"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ET_SI_Username" />
+            android:layout_gravity="center"/>
 
         <Button
             android:id="@+id/PB_SU_CreateNewAccount"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginBottom="25dp"
-            android:background="#38A8E7"
-            android:onClick="Signup"
-            android:text="@string/action_account_create"
-            android:textColor="@color/white"
-            app:backgroundTint="#2196F3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginTop="50dp"
+            android:background="@drawable/shape"
+            android:text="Create New Account"
+            android:backgroundTint="#2196F3"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            android:layout_gravity="center"/>
 
         <TextView
             android:id="@+id/PT_SI_CreateNewAccount2"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp"
             android:clickable="true"
             android:onClick="SignInClick"
             android:text="Have Account? Sign In"
@@ -198,6 +170,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:clickable="true"
             android:onClick="ForgotPasswordClick"
             android:text="Forgot Password?"
@@ -211,8 +184,7 @@
         android:id="@+id/LL_SignIn"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="400dp"
-        android:onClick="Signup"
+        android:layout_marginTop="350dp"
         android:orientation="vertical"
         android:visibility="visible"
         tools:visibility="invisible">
@@ -222,7 +194,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="25dp"
+            android:layout_marginTop="50dp"
             android:hint="@string/prompt_UserName"
             android:inputType="textPersonName"
             android:selectAllOnFocus="true" />
@@ -232,7 +204,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="25dp"
+            android:layout_marginTop="5dp"
             android:hint="@string/prompt_password"
             android:imeActionLabel="@string/action_sign_in_short"
             android:imeOptions="actionDone"
@@ -244,10 +216,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="50dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/shape"
             android:onClick="Login"
             android:text="@string/action_log_in"
+            android:backgroundTint="#2196F3"
             android:textColor="@color/white"
             android:textSize="30sp" />
 
@@ -256,7 +229,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="5dp"
             android:clickable="true"
             android:onClick="SignUpClick"
             android:text="Sign Up"
@@ -268,6 +241,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:clickable="true"
             android:onClick="ForgotPasswordClick"
             android:text="Forgot Password?"
