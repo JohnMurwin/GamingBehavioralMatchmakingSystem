@@ -46,4 +46,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics' // dependency for the Cloud Analytics library
     implementation 'com.google.firebase:firebase-firestore' // dependency for the Cloud Firestore library
     implementation 'com.google.firebase:firebase-auth'  // dependency for the general Firebase Auth library
+    implementation 'com.google.firebase:firebase-database' //dependency for the Realtime Database library
 }

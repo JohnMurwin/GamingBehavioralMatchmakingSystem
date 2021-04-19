@@ -24,7 +24,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="250dp"
         android:orientation="vertical"
-        android:visibility="invisible">
+        android:visibility="invisible"
+        tools:visibility="visible">
 
         <TextView
             android:id="@+id/TV_ResetTitleText"
@@ -186,8 +187,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="350dp"
         android:orientation="vertical"
-        android:visibility="visible"
-        tools:visibility="invisible">
+        android:visibility="visible">
 
         <EditText
             android:id="@+id/ET_SI_Username"

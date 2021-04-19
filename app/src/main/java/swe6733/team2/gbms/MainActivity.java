@@ -24,11 +24,20 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.util.Strings;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,8 +67,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "GBMS: MainActivity -";
 
     private int loginMode;  //0 = Sign In, 1 = Sign Up, 3 = Recovery
-    private FirebaseAuth firebaseAuth;  //Instance to the FirebaseAuth System
 
+    //Firebase Variables
+    private FirebaseAuth firebaseAuth;  //Instance to the FirebaseAuth System
+    private FirebaseFirestore db = FirebaseFirestore.getInstance(); //Instance to the Firebase Firestore Cloud
     private FirebaseUser currentUser;
 
 
@@ -103,7 +114,12 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly
         currentUser = firebaseAuth.getCurrentUser();
         if (currentUser != null) {
-            //TODO: Auto-change to HomePage activity so user doesn't have to sign in again
+
+            //Login Setup
+            //final Intent homeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
+
+            //CHANGE ACTIVITIES HERE
+            //startActivity(homeActivityIntent);
         }
     }
 
@@ -161,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
 
         //final String displayName;
 
-
         //check if we are in login Mode
         if (loginMode == 0) {
             //NORMAL AUTHENTICATION WITH EMAIL AND PASSWORD
@@ -185,8 +200,8 @@ public class MainActivity extends AppCompatActivity {
                                 //Store User
                                 currentUser = firebaseAuth.getCurrentUser();
 
-                                //Change Activities
-                                startActivity(intent);
+                                //CHANGE ACTIVITIES HERE
+                                startActivity(homeActivityIntent);
 
                             } else {
                                 Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
@@ -205,13 +220,17 @@ public class MainActivity extends AppCompatActivity {
     public void Signup (View view)
     {
         //Signup Setup
-        final Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        final Intent homeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
 
         String email = su_emailInput.getText().toString().toLowerCase();
         String pass = su_passwordInput.getText().toString().toLowerCase();
         String username = su_usernameInput.getText().toString().toLowerCase();
 
-        //check if we are in signUp Mode
+        String first = su_firstNameInput.getText().toString().toLowerCase();
+        String last = su_lastNameInput.getText().toString().toLowerCase();
+        String dob = su_dobInput.getText().toString().toLowerCase();
+
+        //First check if we are in signUp Mode
         if (loginMode == 1)
         {
             //NORMAL ACCOUNT CREATION WITH EMAIL AND PASSWORD
@@ -225,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
             }
             //If User did put in acceptable Username / Password
             else {
-                //User Firebase Auth to Create a New User
+                //User Firebase Auth to Create a New User Login
                 try {
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -237,14 +256,37 @@ public class MainActivity extends AppCompatActivity {
                                 //Store User
                                 currentUser = firebaseAuth.getCurrentUser();
 
-                                //Update UserName
-                                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
-                                currentUser.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        Toast.makeText(getApplicationContext(), "User Account Created Successfully!", Toast.LENGTH_LONG).show();
-                                    }
-                                });
+                                //User Firebase Auth to Create a New User Login
+                                Map<String, Object> user = new HashMap<>(); // Create a new Firestore UserAccount with Information
+
+                                //Store Data
+                                user.put("userName", username);
+                                user.put("email", email);
+                                user.put("firstName", first);
+                                user.put("lastName", last);
+
+                                try {
+                                    //Add a new document with the currentUserUI
+                                    db.collection("users").document(currentUser.getUid()).set(user)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d(TAG, "DocumentSnapshot added with ID: " + currentUser.getUid());
+
+                                                    //CHANGE ACTIVITIES HERE
+                                                    startActivity(homeActivityIntent);
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w(TAG, "Error adding document", e);
+                                                }
+                                            });
+                                }
+                                catch (Exception ex) { //Catch data storage exception
+                                    Toast.makeText(getApplicationContext(), "Adding User Data failed. " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
                             }
                             else {
                                 //TODO: Possibly catch Email Exists Already exception here?
@@ -255,9 +297,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 catch (Exception ex) { //Catch Account Creation Failed Exception
                     Toast.makeText(getApplicationContext(), "User Account Creation failed. " + ex.getMessage(), Toast.LENGTH_SHORT).show();
-
                 }
-
             }
         }
     }
