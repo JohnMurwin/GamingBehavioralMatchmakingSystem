@@ -9,16 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".Home"></activity>
-        <activity android:name=".MatchMaking" />
-        <activity android:name=".Settings" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".StartupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MatchMakingActivity" />
+        <activity android:name=".SettingsActivity" />
     </application>
 
 </manifest>

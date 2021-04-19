@@ -1,11 +1,3 @@
-/*
-    SWE6733- Spring '21
-    Team 2
-    Sprint 2021
-    Semester Project - Gaming Behavioral Matchmaking System
-    *Any use of the following code is forbidden without prior consent.
-*/
-
 package swe6733.team2.gbms;
 
 import androidx.annotation.NonNull;
@@ -21,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.google.android.gms.common.util.Strings;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,8 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
-
+public class StartupActivity extends AppCompatActivity {
     /* Component Variables */
     //Sign In
     Button login;
@@ -79,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_startup);
 
         //Sign In Component Linking
         username = (EditText) findViewById(R.id.ET_SI_Username);
@@ -180,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     public void Login(View view)   //This actually does the Login process through Firebase Auth (depending on Login Type will auto-complete proper sign in process)
     {
         //Login Setup
-        final Intent intent = new Intent(getApplicationContext(), Settings.class);
+        final Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
 
         String email = username.getText().toString().toLowerCase();
         String pass = password.getText().toString().toLowerCase();
@@ -200,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
             //If User did put in a acceptable Username / Password, try Login
             else {
                 try {
-                    firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(StartupActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {

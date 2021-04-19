@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MatchMaking extends AppCompatActivity {
+public class MatchMakingActivity extends AppCompatActivity {
 
     Button recommendations;
     Button friendlist;
