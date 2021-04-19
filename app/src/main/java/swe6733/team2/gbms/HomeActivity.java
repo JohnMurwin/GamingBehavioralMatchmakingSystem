@@ -13,7 +13,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class HomeActivity extends AppCompatActivity {
 
     //Component Variables
-    TextView uidTest;
 
     //Firebase Variables
     private FirebaseAuth firebaseAuth;  //Instance to the FirebaseAuth System
@@ -26,7 +25,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         //Component Linking
-        uidTest = (TextView) findViewById(R.id.TV_UIDTest);
+
 
         //Firebase Auth Instancing
         firebaseAuth = FirebaseAuth.getInstance();

@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".MatchMakingActivity">
 
+    <!-- BOTTOM NAV BAR COMPONENT -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_navigation_menu" />
+
     <!-- PARENT LAYOUT COMPONENT FOR ALL ITEMS -->
     <ImageView
         android:id="@+id/IV_GBMLogo"
