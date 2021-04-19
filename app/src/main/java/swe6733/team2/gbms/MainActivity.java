@@ -28,15 +28,27 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Component Variables
+    /* Component Variables */
+    //Sign In
     Button login;
     EditText username;
     EditText password;
-    TextView new_account;
+    TextView signup;
     TextView forgotPassword;
+
+    //Sign Up
+    EditText su_emailInput;
+    EditText su_firstNameInput;
+    EditText su_lastNameInput;
+    EditText su_dobInput;
+    EditText su_usernameInput;
+    EditText su_passwordInput;
+    Button su_createNewAccountPB;
+
 
     LinearLayout signInLayout;
     LinearLayout signUpLayout;
@@ -57,12 +69,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Component Linking
+        //Sign In Component Linking
         username = (EditText) findViewById(R.id.ET_SI_Username);
         password = (EditText) findViewById(R.id.ET_SI_Password);
         login = (Button) findViewById(R.id.PB_SI_Login);
-        new_account = (TextView) findViewById(R.id.PT_SI_CreateNewAccount);
+        signup = (TextView) findViewById(R.id.PT_SI_CreateNewAccount);
         forgotPassword = (TextView) findViewById(R.id.PT_SI_ForgotPassword);
+
+        //Sign Up Component Linking
+        su_emailInput = (EditText) findViewById(R.id.ET_SU_EmailAddressInput);
+        su_firstNameInput = (EditText) findViewById(R.id.ET_SU_FirstNameInput);
+        su_lastNameInput = (EditText) findViewById(R.id.ET_SU_LastNameInput);
+        su_dobInput = (EditText) findViewById(R.id.ET_SU_DOBInput);
+        su_usernameInput = (EditText) findViewById(R.id.ET_SU_UsernameInput);
+        su_passwordInput = (EditText) findViewById(R.id.ET_SU_PasswordInput);
+        su_createNewAccountPB = (Button) findViewById(R.id.PB_SU_CreateNewAccount);
 
         //Layout Linking
         signInLayout = (LinearLayout) findViewById(R.id.LL_SignIn);
@@ -133,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
     public void Login(View view)   //This actually does the Login process through Firebase Auth (depending on Login Type will auto-complete proper sign in process)
     {
         //Login Setup
-        final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        final Intent intent = new Intent(getApplicationContext(), Settings.class);
 
         String email = username.getText().toString().toLowerCase();
         String pass = password.getText().toString().toLowerCase();
@@ -141,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         //final String displayName;
 
 
-        //check if we are in loginMode
+        //check if we are in login Mode
         if (loginMode == 0) {
             //NORMAL AUTHENTICATION WITH EMAIL AND PASSWORD
 
@@ -165,7 +186,8 @@ public class MainActivity extends AppCompatActivity {
                                 currentUser = firebaseAuth.getCurrentUser();
 
                                 //Change Activities
-                                //startActivity(intent);
+                                startActivity(intent);
+
                             } else {
                                 Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
@@ -173,11 +195,70 @@ public class MainActivity extends AppCompatActivity {
                     });
                 } catch (Exception ex) { //Catch Authentication Failed Exception
 
-                    Toast.makeText(getApplicationContext(), "Authentication failed. " + ex.getMessage(),
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Authentication failed. " + ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         }
+    }
 
+    //Signup Initiate
+    public void Signup (View view)
+    {
+        //Signup Setup
+        final Intent intent = new Intent(getApplicationContext(), Home.class);
+
+        String email = su_emailInput.getText().toString().toLowerCase();
+        String pass = su_passwordInput.getText().toString().toLowerCase();
+        String username = su_usernameInput.getText().toString().toLowerCase();
+
+        //check if we are in signUp Mode
+        if (loginMode == 1)
+        {
+            //NORMAL ACCOUNT CREATION WITH EMAIL AND PASSWORD
+
+            //First Check if Email Address or Password are Empty
+            if (Strings.isEmptyOrWhitespace(email)) {
+                Toast.makeText(getApplicationContext(), "Email Cannot Be Empty", Toast.LENGTH_LONG).show();
+            }
+            else if (Strings.isEmptyOrWhitespace(pass)) {
+                Toast.makeText(getApplicationContext(), "Password Cannot Be Empty", Toast.LENGTH_LONG).show();
+            }
+            //If User did put in acceptable Username / Password
+            else {
+                //User Firebase Auth to Create a New User
+                try {
+                    firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                //Print Log
+                                Log.d(TAG, "createAccountWithEmailAddress:success");
+
+                                //Store User
+                                currentUser = firebaseAuth.getCurrentUser();
+
+                                //Update UserName
+                                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
+                                currentUser.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(getApplicationContext(), "User Account Created Successfully!", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                            else {
+                                //TODO: Possibly catch Email Exists Already exception here?
+                                Toast.makeText(getApplicationContext(), "User Account Failed to Create", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                }
+                catch (Exception ex) { //Catch Account Creation Failed Exception
+                    Toast.makeText(getApplicationContext(), "User Account Creation failed. " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        }
     }
 }
