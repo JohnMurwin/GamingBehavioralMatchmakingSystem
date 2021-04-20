@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Settings extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     //Component Variables
     //Main Setting
@@ -59,33 +59,35 @@ public class Settings extends AppCompatActivity {
         mainSettingsLayout=(LinearLayout)findViewById(R.id.LL_MainSettings);
         updateMyInfoLayout=(LinearLayout)findViewById(R.id.LL_UpdateMyInfo);
 
-    }
+        //SCREEN NAVIGATION
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-    //Main Setting Click
-    public void SignInClick(View vIew)
-    {
-        //Ensure Everything Else is Invisible
-        updateMyInfoLayout.setVisibility(View.INVISIBLE);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        //Set Main Setting Items to Visible
-        mainSettingsLayout.setVisibility(View.VISIBLE);
+                //The Actual Selection for Screens
+                switch (item.getItemId()) {
+                    //Home Page Button
+                    case R.id.Home_Page:
+                        Intent homeIntent = new Intent(SettingsActivity.this, HomeActivity.class);
+                        startActivity(homeIntent);
+                        break;
 
-        //Set Setting Mode
-        settingMode = 0;
+                    //Settings Page Button
+                    case R.id.Settings_Page:
+                        //Intent settingsIntent = new Intent(SettingsActivity.this, SettingsActivity.class);
+                        //startActivity(settingsIntent);
+                        break;
 
-    }
-
-    //Main Setting Click
-    public void SignOutClick(View vIew)
-    {
-        //Ensure Everything Else is Invisible
-        mainSettingsLayout.setVisibility(View.INVISIBLE);
-
-        //Set Main Setting Items to Visible
-        updateMyInfoLayout.setVisibility(View.VISIBLE);
-
-        //Set Setting Mode
-        settingMode = 1;
-
+                    //Match Making Page Button
+                    case R.id.Matchmaking_Page:
+                        Intent matchMakingIntent = new Intent(SettingsActivity.this, MatchMakingActivity.class);
+                        startActivity(matchMakingIntent);
+                        break;
+                }
+                return false;
+            }
+        });
     }
 }
