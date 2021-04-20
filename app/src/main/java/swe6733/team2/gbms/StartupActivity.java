@@ -170,7 +170,7 @@ public class StartupActivity extends AppCompatActivity {
     public void Login(View view)   //This actually does the Login process through Firebase Auth (depending on Login Type will auto-complete proper sign in process)
     {
         //Login Setup
-        final Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        final Intent intent = new Intent (this, HomeActivity.class);
 
         String email = username.getText().toString().toLowerCase();
         String pass = password.getText().toString().toLowerCase();
@@ -196,6 +196,7 @@ public class StartupActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 //Print Log
                                 Log.d(TAG, "signInWithEmail:success");
+                                Toast.makeText(getApplicationContext(), "Authentication Success.", Toast.LENGTH_SHORT).show();
 
                                 //Store User
                                 currentUser = firebaseAuth.getCurrentUser();

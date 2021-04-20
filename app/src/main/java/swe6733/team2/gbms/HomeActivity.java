@@ -1,46 +1,51 @@
 package swe6733.team2.gbms;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.MenuItem;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
-
-    //Component Variables
-
-    //Firebase Variables
-    private FirebaseAuth firebaseAuth;  //Instance to the FirebaseAuth System
-    private FirebaseFirestore db = FirebaseFirestore.getInstance(); //Instance to the Firebase Firestore Cloud
-    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //Component Linking
 
+        //SCREEN NAVIGATION
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        //Firebase Auth Instancing
-        firebaseAuth = FirebaseAuth.getInstance();
-    }
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-    //OnStart Override
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly
-        currentUser = firebaseAuth.getCurrentUser();
-        if (currentUser != null) {
-            Toast.makeText(getApplicationContext(), "Welcome: " + currentUser.getDisplayName(), Toast.LENGTH_LONG).show();
+                //The Actual Selection for Screens
+                switch (item.getItemId()) {
+                    //Home Page Button
+                    case R.id.Home_Page:
+                        //Intent homeIntent = new Intent(HomeActivity.this, HomeActivity.class);
+                        //startActivity(homeIntent);
+                        break;
 
-            //Quick Test to Link Authentication User to DB User ID
-        }
+                    //Settings Page Button
+                    case R.id.Settings_Page:
+                        Intent settingsIntent = new Intent(HomeActivity.this, SettingsActivity.class);
+                        startActivity(settingsIntent);
+                        break;
+
+                    //Match Making Page Button
+                    case R.id.Matchmaking_Page:
+                        Intent matchMakingIntent = new Intent(HomeActivity.this, MatchMakingActivity.class);
+                        startActivity(matchMakingIntent);
+                        break;
+                }
+                return false;
+            }
+        });
     }
 }

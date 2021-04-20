@@ -33,6 +33,37 @@ public class MatchMakingActivity extends AppCompatActivity {
         Recommendations = (LinearLayout) findViewById(R.id.LL_Recommendations);
 
 
+        //SCREEN NAVIGATION
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                //The Actual Selection for Screens
+                switch (item.getItemId()) {
+                    //Home Page Button
+                    case R.id.Home_Page:
+                        Intent homeIntent = new Intent(MatchMakingActivity.this, HomeActivity.class);
+                        startActivity(homeIntent);
+                        break;
+
+                    //Settings Page Button
+                    case R.id.Settings_Page:
+                        Intent settingsIntent = new Intent(MatchMakingActivity.this, SettingsActivity.class);
+                        startActivity(settingsIntent);
+                        break;
+
+                    //Match Making Page Button
+                    case R.id.Matchmaking_Page:
+                        //Intent matchMakingIntent = new Intent(MatchMakingActivity.this, MatchMakingActivity.class);
+                        //startActivity(matchMakingIntent);
+                        break;
+                }
+                return false;
+            }
+        });
+
     }
     //Friend List Click
     public void FriendListClick(View vIew) //This swaps the ViewPort from anything, to the Sign In Screen
