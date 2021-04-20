@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MatchMaking extends AppCompatActivity {
+public class MatchMakingActivity extends AppCompatActivity {
 
     Button recommendations;
     Button friendlist;
@@ -32,6 +32,37 @@ public class MatchMaking extends AppCompatActivity {
         Friendlist = (LinearLayout) findViewById(R.id.LL_Friendlist);
         Recommendations = (LinearLayout) findViewById(R.id.LL_Recommendations);
 
+
+        //SCREEN NAVIGATION
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                //The Actual Selection for Screens
+                switch (item.getItemId()) {
+                    //Home Page Button
+                    case R.id.Home_Page:
+                        Intent homeIntent = new Intent(MatchMakingActivity.this, HomeActivity.class);
+                        startActivity(homeIntent);
+                        break;
+
+                    //Settings Page Button
+                    case R.id.Settings_Page:
+                        Intent settingsIntent = new Intent(MatchMakingActivity.this, SettingsActivity.class);
+                        startActivity(settingsIntent);
+                        break;
+
+                    //Match Making Page Button
+                    case R.id.Matchmaking_Page:
+                        //Intent matchMakingIntent = new Intent(MatchMakingActivity.this, MatchMakingActivity.class);
+                        //startActivity(matchMakingIntent);
+                        break;
+                }
+                return false;
+            }
+        });
 
     }
     //Friend List Click
