@@ -27,6 +27,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/gbm__4__3" />
 
+
 <LinearLayout
     android:id="@+id/LL_updateGamingStyles"
     android:layout_width="match_parent"
@@ -45,9 +46,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/setUp"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -80,8 +83,29 @@
                 android:text="Enter Your Age"
                 android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/new_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="We just have a few questions to bring you the best experience" />
 
-            <!--
+                <EditText
+                    android:id="@+id/rectangle_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Enter Your Age"
+                    android:textStyle="bold" />
+
+
+                <!--
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInput"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -142,6 +166,7 @@
                 android:layout_marginRight="20dp"
                 android:orientation="horizontal"
                 android:text="English" />
+
 
             <RadioButton
                 android:id="@+id/radia_id1"
@@ -317,6 +342,16 @@
                 android:layout_marginRight="20dp"
                 android:text="Warrior (Frontline)" />
 
+                <CheckBox
+                    android:id="@+id/radia_id2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Warrior (Frontline)" />
+
 
             <CheckBox
                 android:id="@+id/radia_id1"
@@ -338,6 +373,16 @@
                 android:layout_marginRight="20dp"
                 android:text="Cleric (Healer)" />
 
+                <CheckBox
+                    android:id="@+id/radia_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Cleric (Healer)" />
+
 
             <CheckBox
                 android:id="@+id/radia_id4"
@@ -349,6 +394,15 @@
                 android:layout_marginRight="20dp"
                 android:text="Ranger (Sniper)" />
 
+                <CheckBox
+                    android:id="@+id/radia_id4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Ranger (Sniper)" />
 
             <CheckBox
                 android:id="@+id/radia_id4"
@@ -524,42 +578,46 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="visible"
+        tools:visibility="invisible">
 
         <Button
             android:id="@+id/updateMyInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="60dp"
             android:background="@drawable/shape"
             android:text="Update My Info"
             android:onClick="updateMyInfoClick"
             android:textStyle="bold"
+
             android:textColor="@color/black"
-            android:layout_marginTop="60dp" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/updateGameStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/shape"
             android:text="Update Gaming Styles"
+
             android:onClick="updateGamingStylesClick"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_gravity="center"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/turnOffMatching"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:text="Turn off/on Matching"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_gravity="center" />
+            android:textStyle="bold" />
 
         <Switch
             android:id="@+id/Switch"
@@ -572,11 +630,11 @@
             android:id="@+id/log_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
             android:layout_gravity="center"
+            android:layout_marginTop="100dp"
             android:background="@drawable/shape"
-            android:text="Log Out"
             android:backgroundTint="#2196F3"
+            android:text="Log Out"
             android:textColor="@color/white" />
 
         <Button
@@ -586,8 +644,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/shape"
-            android:text="Delete account"
             android:backgroundTint="#FF0000"
+            android:text="Delete account"
             android:textColor="@color/white" />
     </LinearLayout>
 

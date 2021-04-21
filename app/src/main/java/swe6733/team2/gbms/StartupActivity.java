@@ -100,7 +100,6 @@ public class StartupActivity extends AppCompatActivity {
 
         //Firebase Auth Instancing
         firebaseAuth = FirebaseAuth.getInstance();
-
     }
 
     //OnStart Override
@@ -112,10 +111,10 @@ public class StartupActivity extends AppCompatActivity {
         if (currentUser != null) {
 
             //Login Setup
-            //final Intent homeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
+            final Intent homeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
 
             //CHANGE ACTIVITIES HERE
-            //startActivity(homeActivityIntent);
+            startActivity(homeActivityIntent);
         }
     }
 
