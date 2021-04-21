@@ -10,21 +10,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.util.Strings;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class StartupActivity extends AppCompatActivity {
     /* Component Variables */
@@ -52,6 +49,7 @@ public class StartupActivity extends AppCompatActivity {
     LinearLayout signInLayout;
     LinearLayout signUpLayout;
     LinearLayout forgotPasswordLayout;
+    ScrollView accountSetupScrollView;  //this is acting as a parent layout
 
     //Private Variables
     private static final String TAG = "GBMS: MainActivity -";
@@ -61,8 +59,10 @@ public class StartupActivity extends AppCompatActivity {
 
     //Firebase Variables
     private FirebaseAuth firebaseAuth;  //Instance to the FirebaseAuth System
-    private FirebaseFirestore db = FirebaseFirestore.getInstance(); //Instance to the Firebase Firestore Cloud
     private FirebaseUser currentUser;
+
+    private FirebaseDatabase database;  //Instance to Firebase Realtime Database System
+    private DatabaseReference dbRef;    //Instace to the Particular Database We Want
 
 
     //OnCreate Override
@@ -82,7 +82,7 @@ public class StartupActivity extends AppCompatActivity {
         su_emailInput = (EditText) findViewById(R.id.ET_SU_EmailAddressInput);
         su_firstNameInput = (EditText) findViewById(R.id.ET_SU_FirstNameInput);
         su_lastNameInput = (EditText) findViewById(R.id.ET_SU_LastNameInput);
-        su_dobInput = (EditText) findViewById(R.id.ET_SU_DOBInput);
+        su_dobInput = (EditText) findViewById(R.id.ET_SU_AgeInput);
         su_usernameInput = (EditText) findViewById(R.id.ET_SU_UsernameInput);
         su_passwordInput = (EditText) findViewById(R.id.ET_SU_PasswordInput);
         su_createNewAccountPB = (Button) findViewById(R.id.PB_SU_CreateNewAccount);
@@ -96,10 +96,17 @@ public class StartupActivity extends AppCompatActivity {
         signInLayout = (LinearLayout) findViewById(R.id.LL_SignIn);
         signUpLayout = (LinearLayout) findViewById(R.id.LL_SignUp);
         forgotPasswordLayout = (LinearLayout) findViewById(R.id.LL_ForgotPassword);
+        accountSetupScrollView = (ScrollView) findViewById(R.id.SV_AccountSetup);
 
 
         //Firebase Auth Instancing
         firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+
+        //Firebase Realtime Database Instancing
+        database = FirebaseDatabase.getInstance();
+        dbRef = database.getReference();
+
     }
 
     //OnStart Override
@@ -107,14 +114,13 @@ public class StartupActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly
-        currentUser = firebaseAuth.getCurrentUser();
         if (currentUser != null) {
 
             //Login Setup
-            final Intent homeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
+            //final Intent homeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
 
             //CHANGE ACTIVITIES HERE
-            startActivity(homeActivityIntent);
+            //startActivity(homeActivityIntent);
         }
     }
 
@@ -123,8 +129,10 @@ public class StartupActivity extends AppCompatActivity {
     public void SignInClick(View view) //This swaps the ViewPort from anything, to the Sign In Screen
     {
         //Ensure Everything Else is Invisible
+        //signInLayout.setVisibility(View.INVISIBLE);
         signUpLayout.setVisibility(View.INVISIBLE);
         forgotPasswordLayout.setVisibility(View.INVISIBLE);
+        accountSetupScrollView.setVisibility(View.INVISIBLE);
 
         //Set SignIn Items to Visible
         signInLayout.setVisibility(View.VISIBLE);
@@ -138,7 +146,10 @@ public class StartupActivity extends AppCompatActivity {
     {
         //Ensure Everything Else is Invisible
         signInLayout.setVisibility(View.INVISIBLE);
+        //signUpLayout.setVisibility(View.INVISIBLE);
         forgotPasswordLayout.setVisibility(View.INVISIBLE);
+        accountSetupScrollView.setVisibility(View.INVISIBLE);
+
 
         //Set SignUp Items to Visible
         signUpLayout.setVisibility(View.VISIBLE);
@@ -153,6 +164,9 @@ public class StartupActivity extends AppCompatActivity {
         //Ensure Everything Else is Invisible
         signInLayout.setVisibility(View.INVISIBLE);
         signUpLayout.setVisibility(View.INVISIBLE);
+        //forgotPasswordLayout.setVisibility(View.INVISIBLE);
+        accountSetupScrollView.setVisibility(View.INVISIBLE);
+
 
         //Set ForgotPassword Items to Visible
         forgotPasswordLayout.setVisibility(View.VISIBLE);
@@ -163,6 +177,19 @@ public class StartupActivity extends AppCompatActivity {
 
         //Set loginMode
         loginMode = 2;
+    }
+
+    //Continue Account Creation
+    public void ContinueAccountCreationClick (View view) //This swaps the ViewPort from the SignUp Intro Screen, to the Account Setup Screen
+    {
+        //Ensure Everything Else is Invisible
+        signInLayout.setVisibility(View.INVISIBLE);
+        signUpLayout.setVisibility(View.INVISIBLE);
+        forgotPasswordLayout.setVisibility(View.INVISIBLE);
+        //accountSetupScrollView.setVisibility(View.INVISIBLE);
+
+        //Set SignIn Items to Visible
+        accountSetupScrollView.setVisibility(View.VISIBLE);
     }
 
     //Login Initiate
@@ -228,7 +255,10 @@ public class StartupActivity extends AppCompatActivity {
 
         String first = su_firstNameInput.getText().toString().toLowerCase();
         String last = su_lastNameInput.getText().toString().toLowerCase();
-        String dob = su_dobInput.getText().toString().toLowerCase();
+
+        String ageValue = su_dobInput.getText().toString().toLowerCase();
+        int age = Integer.parseInt(ageValue);
+
 
         //First check if we are in signUp Mode
         if (loginMode == 1)
@@ -256,37 +286,17 @@ public class StartupActivity extends AppCompatActivity {
                                 //Store User
                                 currentUser = firebaseAuth.getCurrentUser();
 
-                                //User Firebase Auth to Create a New User Login
-                                Map<String, Object> user = new HashMap<>(); // Create a new Firestore UserAccount with Information
+                                //User Firebase Realtime Database to store user Information
+                                try {//Get Users DB Reference
 
-                                //Store Data
-                                user.put("userName", username);
-                                user.put("email", email);
-                                user.put("firstName", first);
-                                user.put("lastName", last);
-
-                                try {
-                                    //Add a new document with the currentUserUI
-                                    db.collection("users").document(currentUser.getUid()).set(user)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    Log.d(TAG, "DocumentSnapshot added with ID: " + currentUser.getUid());
-
-                                                    //CHANGE ACTIVITIES HERE
-                                                    startActivity(homeActivityIntent);
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Log.w(TAG, "Error adding document", e);
-                                                }
-                                            });
+                                    DB_UserProfile userProfile = new DB_UserProfile(first, last, username, age);
+                                    dbRef.child("users").child(currentUser.getUid()).setValue(userProfile);   //Store User Profile Data with AuthUID as KeyValue
                                 }
                                 catch (Exception ex) { //Catch data storage exception
-                                    Toast.makeText(getApplicationContext(), "Adding User Data failed. " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Data Storage Creation failed. " + ex.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
+
+                                //Then We want to Transfer to the UI for Account Setup
                             }
                             else {
                                 //TODO: Possibly catch Email Exists Already exception here?

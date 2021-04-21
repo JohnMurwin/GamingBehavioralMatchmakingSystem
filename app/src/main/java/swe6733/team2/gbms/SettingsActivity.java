@@ -62,6 +62,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        /*
         //Main Setting Component Linking
         updateMyInfo=(Button)findViewById(R.id.updateMyInfo);
         updateGamingStyles=(Button)findViewById(R.id.updateGameStyle);
@@ -80,6 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
         mainSettingsLayout=(LinearLayout)findViewById(R.id.LL_MainSettings);
         updateMyInfoLayout=(LinearLayout)findViewById(R.id.LL_UpdateMyInfo);
         updateGamingStylesLayout=(LinearLayout)findViewById(R.id.LL_updateGamingStyles);
+         */
 
 
         //SCREEN NAVIGATION
@@ -108,12 +110,6 @@ public class SettingsActivity extends AppCompatActivity {
                         Intent matchMakingIntent = new Intent(SettingsActivity.this, MatchMakingActivity.class);
                         startActivity(matchMakingIntent);
                         break;
-                    //Sign in Page Button
-                    case R.id.log_out:
-                        Intent SigninIntent = new Intent(SettingsActivity.this, StartupActivity.class);
-                        startActivity(SigninIntent);
-                        break;
-
                 }
                 return false;
             }
