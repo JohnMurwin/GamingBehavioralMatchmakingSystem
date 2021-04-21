@@ -8,29 +8,35 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MatchMakingActivity extends AppCompatActivity {
+public class MatchMakingActivity extends AppCompatActivity  {
 
     Button recommendations;
     Button friendlist;
+    EditText sortBy;
     LinearLayout Friendlist;
     LinearLayout Recommendations;
-    //Private Variables
-    private int loginMode;  //0 = Friend List, 1 = Recommendation,
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_making);
 
         //Layout Linking
-        recommendations=findViewById(R.id.R_recommendations);
-        friendlist=findViewById(R.id.FL_friends);
 
         Friendlist = (LinearLayout) findViewById(R.id.LL_Friendlist);
         Recommendations = (LinearLayout) findViewById(R.id.LL_Recommendations);
+
+        recommendations=(Button)findViewById(R.id.R_recommendations);
+        friendlist=(Button)findViewById(R.id.R_friends);
+        sortBy=(EditText)findViewById(R.id.R_sortBy);
+
+        recommendations.setOnClickListener(this::RecommendationsClick);
+        friendlist.setOnClickListener(this::FriendListClick);
 
 
         //SCREEN NAVIGATION
@@ -75,12 +81,10 @@ public class MatchMakingActivity extends AppCompatActivity {
         //Set SignIn Items to Visible
         Friendlist.setVisibility(View.VISIBLE);
 
-        //Set loginMode
-        loginMode = 0;
     }
 
     //Recommendations Click
-    public void Recommendations(View vIew) //This swaps the ViewPort from anything, to the Sign Up Screen
+    public void RecommendationsClick(View vIew) //This swaps the ViewPort from anything, to the Sign Up Screen
     {
         //Ensure Everything Else is Invisible
         Friendlist.setVisibility(View.INVISIBLE);
@@ -89,8 +93,8 @@ public class MatchMakingActivity extends AppCompatActivity {
         //Set SignUp Items to Visible
         Recommendations.setVisibility(View.VISIBLE);
 
-        //Set loginMode
-        loginMode = 1;
     }
+
+
 
 }
