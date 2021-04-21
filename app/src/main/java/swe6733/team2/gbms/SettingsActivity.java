@@ -4,17 +4,32 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.Toast;
 import android.widget.Switch;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+import com.google.android.material.textfield.TextInputLayout;
+
 
 import com.google.android.gms.common.util.Strings;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -25,6 +40,8 @@ public class SettingsActivity extends AppCompatActivity {
     Button updateMyInfo;
     Button updateGamingStyles;
     Switch turnOffOn;
+    Button logOut;
+    Button finish;
 
 
     //Update My Info
@@ -35,9 +52,10 @@ public class SettingsActivity extends AppCompatActivity {
 
     LinearLayout mainSettingsLayout;
     LinearLayout updateMyInfoLayout;
+    LinearLayout updateGamingStylesLayout;
 
     //Private Variables
-    private int settingMode;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +72,15 @@ public class SettingsActivity extends AppCompatActivity {
         mi_changeEmail=(EditText)findViewById(R.id.changeEmail);
         mi_changePassword=(EditText)findViewById(R.id.changePassword);
         mi_savesChanges=(Button) findViewById(R.id.savesChanges);
+        logOut=(Button)findViewById(R.id.log_out);
+        finish=(Button)findViewById(R.id.finish);
+
 
         //Layout Linking
         mainSettingsLayout=(LinearLayout)findViewById(R.id.LL_MainSettings);
         updateMyInfoLayout=(LinearLayout)findViewById(R.id.LL_UpdateMyInfo);
+        updateGamingStylesLayout=(LinearLayout)findViewById(R.id.LL_updateGamingStyles);
+
 
         //SCREEN NAVIGATION
         final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -85,9 +108,50 @@ public class SettingsActivity extends AppCompatActivity {
                         Intent matchMakingIntent = new Intent(SettingsActivity.this, MatchMakingActivity.class);
                         startActivity(matchMakingIntent);
                         break;
+                    //Sign in Page Button
+                    case R.id.log_out:
+                        Intent SigninIntent = new Intent(SettingsActivity.this, StartupActivity.class);
+                        startActivity(SigninIntent);
+                        break;
+
                 }
                 return false;
             }
         });
     }
+
+    public void updateMyInfoClick(View view) //This swaps the ViewPort from anything, to the Update My Info Screen
+    {
+        //Ensure Everything Else is Invisible
+        mainSettingsLayout.setVisibility(View.INVISIBLE);
+        updateGamingStylesLayout.setVisibility(View.INVISIBLE);
+
+        //Set SignUp Items to Visible
+        updateMyInfoLayout.setVisibility(View.VISIBLE);
+
+
+    }
+
+    public void updateGamingStylesClick(View view) //This swaps the ViewPort from anything, to the Update Gaming Styles Screen
+    {
+        //Ensure Everything Else is Invisible
+        mainSettingsLayout.setVisibility(View.INVISIBLE);
+        updateMyInfoLayout.setVisibility(View.INVISIBLE);
+
+        //Set SignUp Items to Visible
+        updateGamingStylesLayout.setVisibility(View.VISIBLE);
+
+    }
+
+    public void mainSettingsClick(View view) //This swaps the ViewPort from anything, to the Main Setting Screen
+    {
+        //Ensure Everything Else is Invisible
+        updateMyInfoLayout.setVisibility(View.INVISIBLE);
+        updateGamingStylesLayout.setVisibility(View.INVISIBLE);
+
+        //Set SignUp Items to Visible
+        mainSettingsLayout.setVisibility(View.VISIBLE);
+
+    }
+
 }
