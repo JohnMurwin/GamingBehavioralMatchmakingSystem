@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,8 +16,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         //Component Linking
-
+        testText = (TextView) findViewById(R.id.TV_TestText);
 
         //Firebase Auth Instancing
         firebaseAuth = FirebaseAuth.getInstance();
@@ -93,20 +97,43 @@ public class HomeActivity extends AppCompatActivity {
         //Get New Groups
         GetGroups();
 
-        //Display New Groups
+        //Update UI for New Groups
+        DisplayGroups();
+    }
+
+    public void UpdateGroupsDisplay(View view)
+    {
+        //Get New Groups
+        GetGroups();
+
+        //Update UI for New Groups
         DisplayGroups();
     }
 
     //Grabs updated GroupIDs for the current User
-    public void GetGroups () {
+    public void GetGroups () {  //Searches through the Firebase Database and grabs the IDs of the Groups the User is Associated With
 
+        ValueEventListener userListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //Write Out Which Groups the User Is Assigned To
+                testText.setText(dataSnapshot.child("users").child(currentUser.getUid()).child("matchmaking").child("groups").child("id").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        dbRef.addValueEventListener(userListener);
 
     }
 
     //Displays the Group Contents for the current User
-    public void DisplayGroups () {
+    public void DisplayGroups () {  //Displays the Group Content on the UI for the User to Navigate With
 
 
     }
-
 }
