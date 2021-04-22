@@ -6,6 +6,9 @@
     tools:context=".SettingsActivity">
 
     <!-- BOTTOM NAV BAR COMPONENT -->
+
+    <!-- PARENT LAYOUT COMPONENT FOR ALL ITEMS -->
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -13,7 +16,6 @@
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_navigation_menu" />
 
-    <!-- PARENT LAYOUT COMPONENT FOR ALL ITEMS -->
     <ImageView
         android:id="@+id/IV_GBMLogo"
         android:layout_width="match_parent"
@@ -27,685 +29,503 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/gbm__4__3" />
 
-
-<LinearLayout
-    android:id="@+id/LL_updateGamingStyles"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="50dp"
-    android:orientation="vertical"
-    android:visibility="invisible">
-
-
+    <!--  Main Settings LAYOUT COMPONENT -->
     <ScrollView
+        android:id="@+id/SV_AccountPreferences"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="75dp"
+        android:scrollbarStyle="outsideInset"
+        android:visibility="invisible">
 
         <LinearLayout
+            android:id="@+id/LL_TestLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/TV_Instructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:text='Change your game preferences here and click "Save"'
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/TV_LanguageInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Choose your language"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/RG_Language"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/RD_SU_English"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="English" />
+
+                <RadioButton
+                    android:id="@+id/RD_SU_Chinese"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chinese" />
+
+                <RadioButton
+                    android:id="@+id/RD_SU_Spanish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Spanish" />
+
+                <RadioButton
+                    android:id="@+id/RD_SU_French"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="French" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/TV_SeekBarInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Your General Game Aggression:"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:id="@+id/SBD_AggressionStyle"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:max="10"
+                android:progress="1" />
 
             <LinearLayout
+                android:id="@+id/LL_SeekBarText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Set Up"
-                android:textAlignment="center"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/new_account"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="We just have a few questions to bring you the best experience" />
-
-            <EditText
-                android:id="@+id/rectangle_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Enter Your Age"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/new_account"
-                    android:layout_width="match_parent"
+                    android:id="@+id/TV_SeekBarLeast"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:text="We just have a few questions to bring you the best experience" />
+                    android:text="Least Aggressive"
+                    android:textColor="#4CAF50" />
 
-                <EditText
-                    android:id="@+id/rectangle_1"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/TV_SeekBarMost"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:text="Enter Your Age"
-                    android:textStyle="bold" />
-
-
-                <!--
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInput"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:background="@drawable/shape"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp" >
-
-
-                <AutoCompleteTextView
-                    android:id="@+id/autoCompleteTextView"
-                    style="@style/Widget.AppCompat.AutoCompleteTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
-                    android:hint="@string/dropdown"
-                    android:inputType="none"
-                    android:popupBackground="@drawable/shape"
-                    android:textStyle="bold" />
-            </com.google.android.material.textfield.TextInputLayout>-->
+                    android:text="Most Aggressive"
+                    android:textAlignment="textEnd"
+                    android:textColor="#FF5722" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/rectangle_1"
+            <TextView
+                android:id="@+id/TV_CommunicationStyleInstructions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="What Is Your Aggression Style (Enter from 1 to 10)"
+                android:layout_marginTop="25dp"
+                android:text="Communication with other players"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
+            <RadioGroup
+                android:id="@+id/RG_Communication"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+                <RadioButton
+                    android:id="@+id/RB_SU_Tactile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tactile" />
+
+                <RadioButton
+                    android:id="@+id/RB_SU_Aggressive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Aggressive" />
+
+                <RadioButton
+                    android:id="@+id/RB_SU_Calm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Calm" />
+
+                <RadioButton
+                    android:id="@+id/RB_SU_None"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="None" />
+
+            </RadioGroup>
 
             <TextView
+                android:id="@+id/TV_ChoosePlayStyleInstructions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Choose your language" />
-
-            <RadioButton
-                android:id="@+id/radia_id2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal"
-                android:text="English" />
-
-
-            <RadioButton
-                android:id="@+id/radia_id1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Spanish" />
-
-            <RadioButton
-                android:id="@+id/radia_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal"
-                android:text="French" />
-
-            <RadioButton
-                android:id="@+id/radia_id4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal"
-                android:text="Chinese" />
+                android:layout_marginTop="25dp"
+                android:text="Choose the best suited to your preferences below:"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/TV_FPSClass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Communication with other players" />
-
-            <RadioButton
-                android:id="@+id/radia_id2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal"
-                android:text="Tactical" />
-
-            <RadioButton
-                android:id="@+id/radia_id1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Calm" />
-
-            <RadioButton
-                android:id="@+id/radia_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal"
-                android:text="None" />
-
-            <RadioButton
-                android:id="@+id/radia_id4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal"
-                android:text="Aggressive" />
-
-            <TextView
-                android:id="@+id/genre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Select Acceptable Genre" />
-
-            <TextView
-                android:id="@+id/genre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="First Person Shooter" />
+                android:layout_marginTop="10dp"
+                android:text="First Person Shooter Class:"
+                android:textSize="16sp" />
 
             <CheckBox
-                android:id="@+id/radia_id2"
+                android:id="@+id/CB_SU_Assault"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:text="Assault" />
 
             <CheckBox
-                android:id="@+id/radia_id1"
+                android:id="@+id/CB_SU_Heavy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Support" />
+                android:text="Heavy" />
 
             <CheckBox
-                android:id="@+id/radia_id"
+                android:id="@+id/CB_SU_Medic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:text="Medic" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_Recon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:text="Recon" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_Support"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Heavy" />
+                android:text="Support" />
 
             <TextView
-                android:id="@+id/genre"
+                android:id="@+id/TV_RPGClass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Role Playing Game" />
+                android:layout_marginTop="15dp"
+                android:text="Role Playing Game Class:"
+                android:textSize="16sp" />
 
             <CheckBox
-                android:id="@+id/radia_id2"
+                android:id="@+id/CB_SU_Warrior"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Warrior (Frontline)" />
-
-                <CheckBox
-                    android:id="@+id/radia_id2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:text="Warrior (Frontline)" />
-
+                android:text="Warrior" />
 
             <CheckBox
-                android:id="@+id/radia_id1"
+                android:id="@+id/CB_SU_Thief"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Thief (Stealth" />
+                android:text="Thief" />
 
             <CheckBox
-                android:id="@+id/radia_id"
+                android:id="@+id/CB_SU_Cleric"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Cleric (Healer)" />
-
-                <CheckBox
-                    android:id="@+id/radia_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:text="Cleric (Healer)" />
-
+                android:text="Cleric" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_Ranger"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Ranger (Sniper)" />
-
-                <CheckBox
-                    android:id="@+id/radia_id4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:text="Ranger (Sniper)" />
+                android:text="Ranger" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_Wizard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Wizard (Magic)" />
+                android:text="Wizard" />
 
             <TextView
-                android:id="@+id/genre"
+                android:id="@+id/TV_SurvivalStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Survival" />
+                android:layout_marginTop="15dp"
+                android:text="Survival Style:"
+                android:textSize="16sp" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_Horror"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:text="Horror" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_Sandbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:text="Sandbox" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_Zombie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:text="Zombie" />
 
             <TextView
-                android:id="@+id/genre"
+                android:id="@+id/TV_SportsGame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Sports" />
+                android:layout_marginTop="15dp"
+                android:text="Favorite Sports Game Style:"
+                android:textSize="16sp" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_Baseball"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:text="Baseball" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_Soccer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Football" />
-
-            <CheckBox
-                android:id="@+id/radia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:text="Soccer" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_Football"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
+                android:text="Football" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Hockey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Hockey" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_Basketball"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:text="Basketball" />
 
             <TextView
-                android:id="@+id/genre"
+                android:id="@+id/TV_MiscGames"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Check the games you enjoy playing" />
+                android:layout_marginTop="15dp"
+                android:text="Other Favorite Game Styles:"
+                android:textSize="16sp" />
 
             <CheckBox
-                android:id="@+id/radia"
+                android:id="@+id/CB_SU_Racing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:text="Racing" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_BuildingSimulation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:text="Building and Simulation" />
+                android:text="Building / Simulation" />
 
             <CheckBox
-                android:id="@+id/radia_id4"
+                android:id="@+id/CB_SU_BattleRoyale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:text="Battle Royale" />
 
-
             <Button
-                android:id="@+id/finish"
+                android:id="@+id/PB_AS_FinishAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="75dp"
                 android:backgroundTint="#2196F3"
-                android:onClick="mainSettingsClick"
-                android:text="Finish !" />
+                android:inputType="textPersonName"
+                android:text="Update"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
 
-    <!--  Main Settings LAYOUT COMPONENT -->
     <LinearLayout
         android:id="@+id/LL_MainSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="75dp"
         android:orientation="vertical"
-        android:visibility="visible"
-        tools:visibility="invisible">
+        android:visibility="visible">
 
         <Button
-            android:id="@+id/updateMyInfo"
-            android:layout_width="wrap_content"
+            android:id="@+id/PB_MS_UpdateAccount"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/shape"
-            android:text="Update My Info"
-            android:onClick="updateMyInfoClick"
-            android:textStyle="bold"
-
-            android:textColor="@color/black"
+            android:layout_marginBottom="25dp"
+            android:onClick="updateAccountClick"
+            android:text="Update Account Info"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/updateGameStyle"
-            android:layout_width="wrap_content"
+            android:id="@+id/PB_MS_UpdatePreferences"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shape"
-            android:text="Update Gaming Styles"
-
-            android:onClick="updateGamingStylesClick"
-            android:textStyle="bold"
-            android:textColor="@color/black"
+            android:layout_marginBottom="100dp"
+            android:onClick="updatePreferencesClick"
+            android:text="Update Game Preferences"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/turnOffMatching"
+            android:id="@+id/TV_MS_MatchmakingToggleText"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:text="Turn off/on Matching"
+            android:text="Turn Matching Off/On"
             android:textSize="20dp"
             android:textStyle="bold" />
 
         <Switch
-            android:id="@+id/Switch"
+            android:id="@+id/S_MS_MatchmakingToggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="150dp"
             android:text="Off/On" />
 
         <Button
-            android:id="@+id/log_out"
-            android:layout_width="wrap_content"
+            android:id="@+id/PB_MS_LogOut"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:background="@drawable/shape"
+            android:layout_marginBottom="15dp"
             android:backgroundTint="#2196F3"
+            android:onClick="Logout"
             android:text="Log Out"
             android:textColor="@color/white" />
 
         <Button
-            android:id="@+id/delete"
-            android:layout_width="wrap_content"
+            android:id="@+id/PB_MS_DeleteAccount"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/shape"
             android:backgroundTint="#FF0000"
+            android:onClick="DeleteAccount"
             android:text="Delete account"
             android:textColor="@color/white" />
     </LinearLayout>
 
 
     <!--  Update My Info LAYOUT COMPONENT -->
+
     <LinearLayout
-        android:id="@+id/LL_UpdateMyInfo"
+        android:id="@+id/LL_UpdateAccount"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="75dp"
         android:orientation="vertical"
         android:visibility="invisible">
 
         <EditText
-            android:id="@+id/changeUsername"
-            android:layout_width="wrap_content"
+            android:id="@+id/ET_UA_ChangeUsername"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/shape"
-            android:text="Change Username"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginTop="150dp" />
+            android:layout_marginTop="100dp"
+            android:hint="New Username"
+            android:textAlignment="viewStart"
+            android:textColor="#FFFFFF" />
+
         <EditText
-            android:id="@+id/changeEmail"
-            android:layout_width="wrap_content"
+            android:id="@+id/ET_UA_ChangeEmail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shape"
-            android:textAlignment="center"
-            android:text="Change Email Address"
-            android:textStyle="bold"
-            android:textColor="@color/black"
             android:layout_gravity="center"
-            />
+            android:layout_marginTop="20dp"
+            android:hint="New Email"
+            android:textAlignment="viewStart"
+            android:textColor="#FFFFFF" />
+
         <EditText
-            android:id="@+id/changePassword"
-            android:layout_width="wrap_content"
+            android:id="@+id/ET_UA_PasswordOld"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shape"
-            android:textAlignment="center"
-            android:text="Change Password"
-            android:textStyle="bold"
-            android:textColor="@color/black"
             android:layout_gravity="center"
-            />
+            android:layout_marginTop="20dp"
+            android:hint="New Password"
+            android:textAlignment="viewStart"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/ET_UA_PasswordNew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:hint="Confirm Password"
+            android:textAlignment="viewStart"
+            android:textColor="#FFFFFF"
+            android:visibility="invisible"
+            tools:visibility="visible" />
+
         <Button
-            android:id="@+id/savesChanges"
-            android:layout_width="wrap_content"
+            android:id="@+id/PB_UA_SaveChanges"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
-            android:background="@drawable/shape"
-            android:text="Saves Changes"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="100dp"
             android:backgroundTint="#2196F3"
-            android:onClick="mainSettingsClick"
+            android:onClick="UpdateAccountInfo"
+            android:text="Save Changes"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/PB_UA_Back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#F44336"
+            android:onClick="mainSettingsClick"
+            android:text="Back"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </FrameLayout>

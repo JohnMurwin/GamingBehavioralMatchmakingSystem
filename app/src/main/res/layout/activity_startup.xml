@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- PARENT LAYOUT COMPONENT FOR ALL ITEMS -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".StartupActivity">
 
-    <!-- PARENT LAYOUT COMPONENT FOR ALL ITEMS -->
     <ImageView
         android:id="@+id/IV_GBMLogo"
         android:layout_width="match_parent"
@@ -16,6 +16,369 @@
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         app:srcCompat="@drawable/gbm__4__3" />
+
+    <!-- ACCOUNT SETUP DETAILS SCROLLVIEW COMPONENT -->
+    <ScrollView
+        android:id="@+id/SV_AccountPreferences"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginRight="25dp"
+        android:scrollbarStyle="outsideInset"
+        android:visibility="invisible"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/LL_AccountSetup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/TV_Instructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Just a few more questions for the best experience:"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/TV_LanguageInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Choose your language"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/RG_Language"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/RD_SU_English"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="English" />
+
+                <RadioButton
+                    android:id="@+id/RD_SU_Chinese"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chinese" />
+
+                <RadioButton
+                    android:id="@+id/RD_SU_Spanish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Spanish" />
+
+                <RadioButton
+                    android:id="@+id/RD_SU_French"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="French" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/TV_SeekBarInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Your General Game Aggression:"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:id="@+id/SBD_AggressionStyle"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:max="10"
+                android:progress="1" />
+
+
+            <LinearLayout
+                android:id="@+id/LL_SeekBarText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/TV_SeekBarLeast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Least Aggressive"
+                    android:textColor="#4CAF50" />
+
+                <TextView
+                    android:id="@+id/TV_SeekBarMost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text="Most Aggressive"
+                    android:textAlignment="textEnd"
+                    android:textColor="#FF5722" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/TV_CommunicationStyleInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Communication with other players"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/RG_Communication"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/RB_SU_Tactile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tactile" />
+
+                <RadioButton
+                    android:id="@+id/RB_SU_Aggressive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Aggressive" />
+
+                <RadioButton
+                    android:id="@+id/RB_SU_Calm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Calm" />
+
+                <RadioButton
+                    android:id="@+id/RB_SU_None"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="None" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/TV_ChoosePlayStyleInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Choose the best suited to your preferences below:"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TV_FPSClass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="First Person Shooter Class:"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Assault"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Assault" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Heavy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Heavy" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Medic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Medic" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Recon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recon" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Support"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Support" />
+
+            <TextView
+                android:id="@+id/TV_RPGClass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Role Playing Game Class:"
+                android:textSize="16sp" />
+
+
+            <CheckBox
+                android:id="@+id/CB_SU_Warrior"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Warrior" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Thief"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thief" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Cleric"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cleric" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Ranger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ranger" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Wizard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wizard" />
+
+            <TextView
+                android:id="@+id/TV_SurvivalStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Survival Style:"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Horror"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Horror" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Sandbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sandbox" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Zombie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Zombie" />
+
+            <TextView
+                android:id="@+id/TV_SportsGame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Favorite Sports Game Style:"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Baseball"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Baseball" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Football"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Football" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Soccer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Soccer" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Hockey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hockey" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_Basketball"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Basketball" />
+
+            <TextView
+                android:id="@+id/TV_MiscGames"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Other Favorite Game Styles:"
+                android:textSize="16sp" />
+
+
+            <CheckBox
+                android:id="@+id/CB_SU_Racing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Racing" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_BuildingSimulation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Building / Simulation" />
+
+            <CheckBox
+                android:id="@+id/CB_SU_BattleRoyale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Battle Royale" />
+
+            <Button
+                android:id="@+id/PB_AS_FinishAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="75dp"
+                android:background="@drawable/shape"
+                android:backgroundTint="#2196F3"
+                android:inputType="textPersonName"
+                android:onClick="Signup"
+                android:text="Finish !"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/PT_SU_SignInBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="75dp"
+                android:clickable="true"
+                android:onClick="SignInClick"
+                android:text="Sign In Instead"
+                android:textAlignment="center"
+                android:textColor="@color/purple_200"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
 
     <!-- FORGOT PASSWORD LAYOUT COMPONENT -->
     <LinearLayout
@@ -94,75 +457,78 @@
         android:id="@+id/LL_SignUp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="150dp"
+        android:layout_marginRight="25dp"
         android:orientation="vertical"
         android:visibility="invisible">
 
         <EditText
             android:id="@+id/ET_SU_FirstNameInput"
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@drawable/shape"
+            android:hint="First Name"
             android:inputType="textPersonName"
-            android:text="First Name"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
         <EditText
             android:id="@+id/ET_SU_LastNameInput"
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:background="@drawable/shape"
+            android:hint="Last Name"
             android:inputType="textPersonName"
-            android:text="Last Name"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
         <EditText
-            android:id="@+id/ET_SU_DOBInput"
-            android:layout_width="wrap_content"
+            android:id="@+id/ET_SU_AgeInput"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:background="@drawable/shape"
-            android:inputType="textPersonName"
-            android:text="Birth Date"
-            android:textAlignment="center" />
+            android:hint="Age"
+            android:inputType="number"
+            android:textAlignment="textStart" />
 
         <EditText
             android:id="@+id/ET_SU_EmailAddressInput"
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:background="@drawable/shape"
+            android:hint="Email Address"
             android:inputType="textPersonName"
-            android:text="Email Address"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
         <EditText
             android:id="@+id/ET_SU_UsernameInput"
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:background="@drawable/shape"
+            android:hint="Username"
             android:inputType="textPersonName"
-            android:text="User Name"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
         <EditText
             android:id="@+id/ET_SU_PasswordInput"
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:background="@drawable/shape"
-            android:inputType="textPersonName"
-            android:text="Password"
-            android:textAlignment="center" />
+            android:hint="Password"
+            android:inputType="textVisiblePassword|textPassword"
+            android:password="true"
+            android:textAlignment="textStart" />
 
         <Button
             android:id="@+id/PB_SU_CreateNewAccount"
@@ -173,7 +539,7 @@
             android:background="@drawable/shape"
             android:backgroundTint="#2196F3"
             android:inputType="textPersonName"
-            android:onClick="Signup"
+            android:onClick="ContinueAccountCreationClick"
             android:text="New Account"
             android:textAlignment="center"
             android:textSize="30sp" />
@@ -209,10 +575,13 @@
     <LinearLayout
         android:id="@+id/LL_SignIn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="75dp"
+        android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="visible"
+        tools:visibility="visible">
 
         <EditText
             android:id="@+id/ET_SI_Username"
@@ -254,7 +623,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:clickable="true"
             android:onClick="SignUpClick"
             android:text="Sign Up"
