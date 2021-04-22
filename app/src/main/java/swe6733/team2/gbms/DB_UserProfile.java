@@ -12,11 +12,6 @@ public class DB_UserProfile {
 
     public int age;
 
-    public boolean matchMakingStatus;
-    public int matchMakingGroup;
-
-    public int communicationStyle;
-
     //Default Constructor required
     public DB_UserProfile() {
 

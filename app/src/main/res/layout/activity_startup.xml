@@ -26,7 +26,8 @@
         android:layout_marginTop="75dp"
         android:layout_marginRight="25dp"
         android:scrollbarStyle="outsideInset"
-        android:visibility="invisible">
+        android:visibility="invisible"
+        tools:visibility="visible">
 
         <LinearLayout
             android:id="@+id/LL_AccountSetup"
@@ -47,6 +48,46 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/TV_LanguageInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Choose your language"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/RG_Language"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/RD_SU_English"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="English" />
+
+                <RadioButton
+                    android:id="@+id/RD_SU_Chinese"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chinese" />
+
+                <RadioButton
+                    android:id="@+id/RD_SU_Spanish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Spanish" />
+
+                <RadioButton
+                    android:id="@+id/RD_SU_French"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="French" />
+
+            </RadioGroup>
 
             <TextView
                 android:id="@+id/TV_SeekBarInstructions"
@@ -91,46 +132,6 @@
                     android:textAlignment="textEnd"
                     android:textColor="#FF5722" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/TV_LanguageInstructions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:text="Choose your language"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/RG_Language"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <RadioButton
-                    android:id="@+id/RD_SU_Engish"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="English" />
-
-                <RadioButton
-                    android:id="@+id/RD_SU_Chinese"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Chinese" />
-
-                <RadioButton
-                    android:id="@+id/RD_SU_Spanish"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Spanish" />
-
-                <RadioButton
-                    android:id="@+id/RD_SU_French"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="French" />
-
-            </RadioGroup>
 
             <TextView
                 android:id="@+id/TV_CommunicationStyleInstructions"
@@ -355,7 +356,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="75dp"
-                android:layout_marginBottom="75dp"
                 android:background="@drawable/shape"
                 android:backgroundTint="#2196F3"
                 android:inputType="textPersonName"
@@ -363,6 +363,20 @@
                 android:text="Finish !"
                 android:textAlignment="center"
                 android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/PT_SU_SignInBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="75dp"
+                android:clickable="true"
+                android:onClick="SignInClick"
+                android:text="Sign In Instead"
+                android:textAlignment="center"
+                android:textColor="@color/purple_200"
+                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 
@@ -443,76 +457,78 @@
         android:id="@+id/LL_SignUp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="150dp"
+        android:layout_marginRight="25dp"
         android:orientation="vertical"
         android:visibility="invisible">
 
         <EditText
             android:id="@+id/ET_SU_FirstNameInput"
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@drawable/shape"
             android:hint="First Name"
             android:inputType="textPersonName"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
         <EditText
             android:id="@+id/ET_SU_LastNameInput"
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:background="@drawable/shape"
             android:hint="Last Name"
             android:inputType="textPersonName"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
         <EditText
             android:id="@+id/ET_SU_AgeInput"
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:background="@drawable/shape"
             android:hint="Age"
             android:inputType="number"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
         <EditText
             android:id="@+id/ET_SU_EmailAddressInput"
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:background="@drawable/shape"
             android:hint="Email Address"
             android:inputType="textPersonName"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
         <EditText
             android:id="@+id/ET_SU_UsernameInput"
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:background="@drawable/shape"
             android:hint="Username"
             android:inputType="textPersonName"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
         <EditText
             android:id="@+id/ET_SU_PasswordInput"
-            android:layout_width="wrap_content"
+            style="@android:style/Widget.Material.EditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:background="@drawable/shape"
             android:hint="Password"
             android:inputType="textVisiblePassword|textPassword"
             android:password="true"
-            android:textAlignment="center" />
+            android:textAlignment="textStart" />
 
         <Button
             android:id="@+id/PB_SU_CreateNewAccount"
@@ -559,10 +575,13 @@
     <LinearLayout
         android:id="@+id/LL_SignIn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="75dp"
+        android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="visible"
+        tools:visibility="invisible">
 
         <EditText
             android:id="@+id/ET_SI_Username"
@@ -604,7 +623,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:clickable="true"
             android:onClick="SignUpClick"
             android:text="Sign Up"
