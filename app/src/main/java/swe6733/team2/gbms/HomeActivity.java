@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,7 +32,10 @@ public class HomeActivity extends AppCompatActivity {
     //Firebase Variables
     private FirebaseAuth firebaseAuth;  //Instance to the FirebaseAuth System
     private FirebaseUser currentUser;
+    private FirebaseDatabase database;  //Instance to Firebase Realtime Database System
+    private DatabaseReference dbRef;    //Instance to the Particular Database We Want
 
+    //onCreate Override
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,10 @@ public class HomeActivity extends AppCompatActivity {
         //Firebase Auth Instancing
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
+
+        //Firebase Realtime Database Instancing
+        database = FirebaseDatabase.getInstance();
+        dbRef = database.getReference();
 
         Toast.makeText(getApplicationContext(), "Welcome " + currentUser.getDisplayName(), Toast.LENGTH_SHORT).show();
 
@@ -75,4 +84,29 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+
+    //onResume Override
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //Get New Groups
+        GetGroups();
+
+        //Display New Groups
+        DisplayGroups();
+    }
+
+    //Grabs updated GroupIDs for the current User
+    public void GetGroups () {
+
+
+    }
+
+    //Displays the Group Contents for the current User
+    public void DisplayGroups () {
+
+
+    }
+
 }

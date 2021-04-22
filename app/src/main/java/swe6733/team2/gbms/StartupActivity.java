@@ -229,10 +229,10 @@ public class StartupActivity extends AppCompatActivity {
         if (currentUser != null) {
 
             //Login Setup
-            final Intent homeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
+            //final Intent homeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
 
             //CHANGE ACTIVITIES HERE
-            startActivity(homeActivityIntent);
+            //startActivity(homeActivityIntent);
         }
     }
 
