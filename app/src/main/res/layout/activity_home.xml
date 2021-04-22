@@ -26,7 +26,7 @@
         <ScrollView
             android:id="@+id/SV_GroupsView"
             android:layout_width="match_parent"
-            android:layout_height="650dp"
+            android:layout_height="500dp"
             android:layout_marginTop="25dp">
 
             <LinearLayout

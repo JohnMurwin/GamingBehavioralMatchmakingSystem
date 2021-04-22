@@ -25,6 +25,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HomeActivity extends AppCompatActivity {
 
     /* Component Variables */
@@ -32,6 +35,8 @@ public class HomeActivity extends AppCompatActivity {
 
     //Private Variables
     private static final String TAG = "GBMS: MainActivity -";
+
+    public List<String> groups = new ArrayList<String>();
 
     //Firebase Variables
     private FirebaseAuth firebaseAuth;  //Instance to the FirebaseAuth System
@@ -89,17 +94,6 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    //onResume Override
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        //Get New Groups
-        GetGroups();
-
-        //Update UI for New Groups
-        DisplayGroups();
-    }
 
     public void UpdateGroupsDisplay(View view)
     {
@@ -113,12 +107,15 @@ public class HomeActivity extends AppCompatActivity {
     //Grabs updated GroupIDs for the current User
     public void GetGroups () {  //Searches through the Firebase Database and grabs the IDs of the Groups the User is Associated With
 
+        //
         ValueEventListener userListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                //Write Out Which Groups the User Is Assigned To
-                testText.setText(dataSnapshot.child("users").child(currentUser.getUid()).child("matchmaking").child("groups").child("id").getValue().toString());
+                //English Region
+                if (dataSnapshot.child("groups").child("englishRegion").child("members").hasChild(currentUser.getUid())) {
+                    groups.add(1,"English");
+                }
             }
 
             @Override
@@ -128,12 +125,16 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
         dbRef.addValueEventListener(userListener);
-
     }
 
     //Displays the Group Contents for the current User
     public void DisplayGroups () {  //Displays the Group Content on the UI for the User to Navigate With
 
-
+        //testText.setText(groups.get(1));
+        try {
+            Toast.makeText(getApplicationContext(), "List Contents" + groups.get(1), Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+            Toast.makeText(getApplicationContext(), "Exception Failed" + ex, Toast.LENGTH_LONG).show();
+        }
     }
 }

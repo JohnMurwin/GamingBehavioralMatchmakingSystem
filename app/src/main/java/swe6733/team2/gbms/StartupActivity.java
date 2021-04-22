@@ -395,8 +395,6 @@ public class StartupActivity extends AppCompatActivity {
         //Get Input
         GetInputData();
 
-
-
         //Next check if we are in signUp Mode
         if (loginMode == 1)
         {
@@ -506,7 +504,7 @@ public class StartupActivity extends AppCompatActivity {
 
         //Communication RadioGroup
         if (as_communicationStyleSelectionGroup.getCheckedRadioButtonId() == findViewById(R.id.RB_SU_Tactile).getId())
-            communicationStyle = "Tactile";
+            communicationStyle = "Tactical";
         else if (as_communicationStyleSelectionGroup.getCheckedRadioButtonId() == findViewById(R.id.RB_SU_Aggressive).getId())
             communicationStyle = "Aggressive";
         else if (as_communicationStyleSelectionGroup.getCheckedRadioButtonId() == findViewById(R.id.RB_SU_Calm).getId())
@@ -663,5 +661,58 @@ public class StartupActivity extends AppCompatActivity {
         dbRef.child("users").child(currentUser.getUid()).child("preferences").child("miscChoice").child("racing").setValue(racingTicked);
         dbRef.child("users").child(currentUser.getUid()).child("preferences").child("miscChoice").child("building-simulation").setValue(buildingTicked);
         dbRef.child("users").child(currentUser.getUid()).child("preferences").child("miscChoice").child("battle-royale").setValue(battleroyaleTicked);
+
+        //Once we have written User Data, sort them into Groups
+        SortIntoGroup();
+
+    }
+
+    //Uses the Input Data to Put user in UserGroup
+    private void SortIntoGroup ()   //Runs a bunch of routines
+    {
+        //First Sort by Language
+        if (languageSelection.equals("English")) {  //English
+            dbRef.child("groups").child("englishRegion").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("englishRegion").setValue(true);
+        }
+        else if (languageSelection.equals("Chinese")) {    //Chinese
+            dbRef.child("groups").child("chineseRegion").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("chineseRegion").setValue(true);
+        }
+        else if (languageSelection.equals("Spanish")) {    //Spanish
+            dbRef.child("groups").child("spanishRegion").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("spanishRegion").setValue(true);
+        }
+        else if (languageSelection.equals("French")) {
+            dbRef.child("groups").child("frenchRegion").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("frenchRegion").setValue(true);
+        }
+        else {  //Catch All for No Group
+            //TODO: Then do nothing? Sort into Catch All Group?
+            dbRef.child("groups").child("noRegion").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("noRegion").setValue(true);
+        }
+
+        //Then by Communication Style
+        if (communicationStyle.equals("Tactical")) {
+            dbRef.child("groups").child("tacticalGroup").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("tacticalGroup").setValue(true);
+        }
+        else if (communicationStyle.equals("Aggressive")) {
+            dbRef.child("groups").child("aggressiveGroup").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("aggressiveGroup").setValue(true);
+        }
+        else if (communicationStyle.equals("Calm")) {
+            dbRef.child("groups").child("calmGroup").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("calmGroup").setValue(true);
+        }
+        else if (communicationStyle.equals("None")) {
+            dbRef.child("groups").child("noneGroup").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("noneGroup").setValue(true);
+        }
+        else {
+            //TODO: Then do nothing? Sort into Catch All Group?
+        }
+
     }
 }
