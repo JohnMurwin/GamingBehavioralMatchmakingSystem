@@ -32,8 +32,8 @@ public class StartupActivity extends AppCompatActivity {
     Button si_loginPB;
     EditText si_usernameInput;
     EditText si_passwordInput;
-    TextView sI_signupTV;
-    TextView forgotPasswordTV;
+    TextView si_signupTV;
+    TextView si_forgotPasswordTV;
 
     //Sign Up
     EditText su_emailInput;
@@ -144,8 +144,8 @@ public class StartupActivity extends AppCompatActivity {
         si_usernameInput = (EditText) findViewById(R.id.ET_SI_Username);
         si_passwordInput = (EditText) findViewById(R.id.ET_SI_Password);
         si_loginPB = (Button) findViewById(R.id.PB_SI_Login);
-        sI_signupTV = (TextView) findViewById(R.id.PT_SI_CreateNewAccount);
-        forgotPasswordTV = (TextView) findViewById(R.id.PT_SI_ForgotPassword);
+        si_signupTV = (TextView) findViewById(R.id.PT_SI_CreateNewAccount);
+        si_forgotPasswordTV = (TextView) findViewById(R.id.PT_SI_ForgotPassword);
 
         //Sign Up Component Linking
         su_emailInput = (EditText) findViewById(R.id.ET_SU_EmailAddressInput);
@@ -192,7 +192,7 @@ public class StartupActivity extends AppCompatActivity {
         signInLayout = (LinearLayout) findViewById(R.id.LL_SignIn);
         signUpLayout = (LinearLayout) findViewById(R.id.LL_SignUp);
         forgotPasswordLayout = (LinearLayout) findViewById(R.id.LL_ForgotPassword);
-        accountSetupScrollView = (ScrollView) findViewById(R.id.SV_AccountSetup);
+        accountSetupScrollView = (ScrollView) findViewById(R.id.SV_AccountPreferences);
 
 
         //Firebase Auth Instancing
@@ -237,7 +237,7 @@ public class StartupActivity extends AppCompatActivity {
     }
 
 
-    //Sign In Click
+    //Sign In Button Click
     public void SignInClick(View view) //This swaps the ViewPort from anything, to the Sign In Screen
     {
         //Ensure Everything Else is Invisible
@@ -253,7 +253,7 @@ public class StartupActivity extends AppCompatActivity {
         loginMode = 0;
     }
 
-    //Sign Up Click
+    //Sign Up Button Click
     public void SignUpClick(View view) //This swaps the ViewPort from anything, to the Sign Up Screen
     {
         //Ensure Everything Else is Invisible
@@ -270,7 +270,7 @@ public class StartupActivity extends AppCompatActivity {
         loginMode = 1;
     }
 
-    //Forgot Password Click
+    //Forgot Password Button Click
     public void ForgotPasswordClick(View view) //This swaps the ViewPort from anything, to the Forgot Password Screen
     {
         //Ensure Everything Else is Invisible
@@ -291,7 +291,7 @@ public class StartupActivity extends AppCompatActivity {
         loginMode = 2;
     }
 
-    //Continue Account Creation
+    //Continue Account Button Creation Click
     public void ContinueAccountCreationClick (View view) //This swaps the ViewPort from the SignUp Intro Screen, to the Account Setup Screen
     {
         //Ensure Everything Else is Invisible

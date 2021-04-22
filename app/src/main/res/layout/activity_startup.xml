@@ -19,7 +19,7 @@
 
     <!-- ACCOUNT SETUP DETAILS SCROLLVIEW COMPONENT -->
     <ScrollView
-        android:id="@+id/SV_AccountSetup"
+        android:id="@+id/SV_AccountPreferences"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="25dp"
@@ -581,7 +581,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="visible"
-        tools:visibility="invisible">
+        tools:visibility="visible">
 
         <EditText
             android:id="@+id/ET_SI_Username"

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,7 +29,6 @@ public class HomeActivity extends AppCompatActivity {
 
     //Firebase Variables
     private FirebaseAuth firebaseAuth;  //Instance to the FirebaseAuth System
-    private FirebaseFirestore db = FirebaseFirestore.getInstance(); //Instance to the Firebase Firestore Cloud
     private FirebaseUser currentUser;
 
     @Override
@@ -39,10 +39,11 @@ public class HomeActivity extends AppCompatActivity {
         //Component Linking
 
 
-
         //Firebase Auth Instancing
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
+
+        Toast.makeText(getApplicationContext(), "Welcome " + currentUser.getDisplayName(), Toast.LENGTH_SHORT).show();
 
         //SCREEN NAVIGATION
         final BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
