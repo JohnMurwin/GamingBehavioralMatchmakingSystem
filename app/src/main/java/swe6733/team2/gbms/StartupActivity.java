@@ -670,49 +670,237 @@ public class StartupActivity extends AppCompatActivity {
     //Uses the Input Data to Put user in UserGroup
     private void SortIntoGroup ()   //Runs a bunch of routines
     {
+        //Sort Language
+        sortLanguageGroup();
+
+        //Sort Communication
+        sortCommunicationGroup();
+
+        //Sort Aggression Group
+        sortAggressionGroup();
+
+        //Sort FPS Group
+        sortFPSGroup();
+
+        //Sort RPG Group
+        sortRPGGroup();
+
+        //Sort Survival Group
+        sortSurvivalGroup();
+
+        //Sort Sports Group
+        sortSportGroup();
+
+        //Sort Misc Group
+        sortMiscGroup();
+    }
+
+    //Sort User Based off Selected Language
+    private void sortLanguageGroup ()
+    {
         //First Sort by Language
         if (languageSelection.equals("English")) {  //English
-            dbRef.child("groups").child("englishRegion").child("members").child(currentUser.getUid()).setValue(true);
-            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("englishRegion").setValue(true);
+            dbRef.child("groups").child("region").child("english").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("region").child("english").setValue(true);
         }
         else if (languageSelection.equals("Chinese")) {    //Chinese
-            dbRef.child("groups").child("chineseRegion").child("members").child(currentUser.getUid()).setValue(true);
-            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("chineseRegion").setValue(true);
+            dbRef.child("groups").child("region").child("chinese").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("region").child("chinese").setValue(true);
         }
         else if (languageSelection.equals("Spanish")) {    //Spanish
-            dbRef.child("groups").child("spanishRegion").child("members").child(currentUser.getUid()).setValue(true);
-            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("spanishRegion").setValue(true);
+            dbRef.child("groups").child("region").child("spanish").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("region").child("spanish").setValue(true);
         }
         else if (languageSelection.equals("French")) {
-            dbRef.child("groups").child("frenchRegion").child("members").child(currentUser.getUid()).setValue(true);
-            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("frenchRegion").setValue(true);
+            dbRef.child("groups").child("region").child("french").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("region").child("french").setValue(true);
         }
         else {  //Catch All for No Group
-            //TODO: Then do nothing? Sort into Catch All Group?
-            dbRef.child("groups").child("noRegion").child("members").child(currentUser.getUid()).setValue(true);
-            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("noRegion").setValue(true);
+            dbRef.child("groups").child("region").child("none").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("region").child("none").setValue(true);
         }
+    }
 
+    //Sort User Based off Selected Communication Style
+    private void sortCommunicationGroup ()
+    {
         //Then by Communication Style
-        if (communicationStyle.equals("Tactical")) {
-            dbRef.child("groups").child("tacticalGroup").child("members").child(currentUser.getUid()).setValue(true);
-            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("tacticalGroup").setValue(true);
+        if (communicationStyle.equals("Tactical")) {    //Tactical
+            dbRef.child("groups").child("commStyle").child("tactical").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("commStyle").child("tactical").setValue(true);
         }
-        else if (communicationStyle.equals("Aggressive")) {
-            dbRef.child("groups").child("aggressiveGroup").child("members").child(currentUser.getUid()).setValue(true);
-            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("aggressiveGroup").setValue(true);
+        else if (communicationStyle.equals("Aggressive")) { //Aggressive
+            dbRef.child("groups").child("commStyle").child("aggressive").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("commStyle").child("aggressive").setValue(true);
         }
-        else if (communicationStyle.equals("Calm")) {
-            dbRef.child("groups").child("calmGroup").child("members").child(currentUser.getUid()).setValue(true);
-            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("calmGroup").setValue(true);
+        else if (communicationStyle.equals("Calm")) {   //Calm
+            dbRef.child("groups").child("commStyle").child("calm").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("commStyle").child("calm").setValue(true);
         }
-        else if (communicationStyle.equals("None")) {
-            dbRef.child("groups").child("noneGroup").child("members").child(currentUser.getUid()).setValue(true);
-            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("noneGroup").setValue(true);
+        else if (communicationStyle.equals("None")) {   //None
+            dbRef.child("groups").child("commStyle").child("none").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("commStyle").child("none").setValue(true);
         }
-        else {
+        else {  //????
             //TODO: Then do nothing? Sort into Catch All Group?
         }
 
     }
+
+    //Sort User Based off Determined Aggression
+    private void sortAggressionGroup ()
+    {
+        //Then by Aggression
+        if (aggressionSeekBarValue < 2) {   //Passive
+            dbRef.child("groups").child("aggression").child("passive").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("aggression").child("passive").setValue(true);
+        }
+        else if (aggressionSeekBarValue >= 3 && aggressionSeekBarValue <= 5){   //Reasonable
+            dbRef.child("groups").child("aggression").child("reasonable").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("aggression").child("reasonable").setValue(true);
+        }
+        else if (aggressionSeekBarValue >= 6 && aggressionSeekBarValue <=8){    //Aggressive
+            dbRef.child("groups").child("aggression").child("aggressive").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("aggression").child("aggressive").setValue(true);
+        }
+        else{   //Excessive
+            dbRef.child("groups").child("aggression").child("excessive").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("aggression").child("excessive").setValue(true);
+        }
+    }
+
+    //Sort User Based off Selected FPS Class Selections
+    private void sortFPSGroup ()
+    {
+        //Then by FPS Group
+        if (assaultTicked) {    //The Assault Group for FPS Players
+            dbRef.child("groups").child("fps").child("assault").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("fps").child("assault").setValue(true);
+        }
+
+        if (heavyTicked) {  //The Heavy Group for FPS Players
+            dbRef.child("groups").child("fps").child("heavy").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("fps").child("heavy").setValue(true);
+        }
+
+        if (medicTicked) {  //The Medic Group for FPS Players
+            dbRef.child("groups").child("fps").child("medic").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("fps").child("medic").setValue(true);
+        }
+
+        if (reconTicked) {  //The Recon Group for FPS Players
+            dbRef.child("groups").child("fps").child("recon").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("fps").child("recon").setValue(true);
+        }
+
+        if (supportTicked) {    //The Support Group for FPS Players
+            dbRef.child("groups").child("fps").child("support").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("fps").child("support").setValue(true);
+        }
+
+    }
+
+    //Sort User Based off Selected RPG Class Selections
+    private void sortRPGGroup ()
+    {
+        //Then by FPS Group
+        if (warriorTicked) {    //The warrior Group for RPG Players
+            dbRef.child("groups").child("rpg").child("warrior").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("rpg").child("warrior").setValue(true);
+        }
+
+        if (thiefTicked) {  //The thief Group for RPG Players
+            dbRef.child("groups").child("rpg").child("thief").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("rpg").child("thief").setValue(true);
+        }
+
+        if (clericTicked) {  //The cleric Group for RPG Players
+            dbRef.child("groups").child("rpg").child("cleric").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("rpg").child("cleric").setValue(true);
+        }
+
+        if (rangerTicked) {  //The ranger Group for RPG Players
+            dbRef.child("groups").child("rpg").child("ranger").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("rpg").child("ranger").setValue(true);
+        }
+
+        if (wizardTicked) {    //The wizard Group for RPF Players
+            dbRef.child("groups").child("rpg").child("wizard").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("rpg").child("wizard").setValue(true);
+
+        }
+    }
+
+    //Sort User Based off Selected Survival Preferences
+    private void sortSurvivalGroup()
+    {
+
+        if (horrorTicked) {    //The horror Group for Survival Players
+            dbRef.child("groups").child("survival").child("horror").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("survival").child("horror").setValue(true);
+        }
+
+        if (sandboxTicked) {    //The sandbox Group for Survival Players
+            dbRef.child("groups").child("survival").child("sandbox").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("survival").child("sandbox").setValue(true);
+        }
+
+        if (zombieTicked) {    //The zombie Group for Survival Players
+            dbRef.child("groups").child("survival").child("zombie").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("survival").child("zombie").setValue(true);
+        }
+
+    }
+
+    //Sort User Based off Selected Sport Preferences
+    private void sortSportGroup()
+    {
+
+        if (baseballTicked) {    //The baseball Group for sports Players
+            dbRef.child("groups").child("sports").child("baseball").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("sports").child("baseball").setValue(true);
+        }
+
+        if (soccerTicked) {    //The soccer Group for sports Players
+            dbRef.child("groups").child("sports").child("soccer").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("sports").child("soccer").setValue(true);
+        }
+
+        if (footballTicked) {    //The football Group for sports Players
+            dbRef.child("groups").child("sports").child("football").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("sports").child("football").setValue(true);
+        }
+
+        if (hockeyTicked) {    //The hockey Group for sports Players
+            dbRef.child("groups").child("sports").child("hockey").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("sports").child("hockey").setValue(true);
+        }
+
+        if (basketballTicked) {    //The basketball Group for sports Players
+            dbRef.child("groups").child("sports").child("basketball").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("sports").child("basketball").setValue(true);
+        }
+
+    }
+
+    //Sort User Based off Selected Misc Preferences
+    private void sortMiscGroup()
+    {
+
+        if (racingTicked) {    //The racing Group for misc Players
+            dbRef.child("groups").child("misc").child("racing").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("misc").child("racing").setValue(true);
+        }
+
+        if (buildingTicked) {    //The building Group for misc Players
+            dbRef.child("groups").child("misc").child("building").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("misc").child("building").setValue(true);
+        }
+
+        if (battleroyaleTicked) {    //The battleroyale Group for misc Players
+            dbRef.child("groups").child("misc").child("battleroyale").child("members").child(currentUser.getUid()).setValue(true);
+            dbRef.child("users").child(currentUser.getUid()).child("matchMaking").child("groups").child("misc").child("battleroyale").setValue(true);
+        }
+    }
+
 }
